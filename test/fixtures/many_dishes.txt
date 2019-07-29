@@ -1,0 +1,782 @@
+
+
+        <div class="box">
+    <h2 class="menu-open">
+
+            <i class="fa fa-check-circle gray"></i>
+            <i class="fa fa-check-circle gray"></i>
+
+        Thursday, 01/08
+        <span class="status hidden-sm hidden-xs">
+
+
+                                    You can select your lunches for this day until Tuesday, 30/07 19:00                            </span>
+    </h2>
+
+    <div class="row menu menu-open">
+        <div class="col-md-12">
+    <!--            <textarea style="width:100%; height:500px;">--><!--</textarea>-->
+                <div class="row">
+
+
+
+                        <div data-id-menu="906" data-id-vendor="4" class="col-md-3 one-day " style="clear:both;" >
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/saladstory.jpeg" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Salad Story                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Zupa orientalny krem z dyni </div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            -                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            -                                        </div>
+
+                                        <div class="tags">
+                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">Wegetariańskie</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">Wegańskie</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="label show-tooltip short" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">S</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">Soja</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">O</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">Orzechy</span>                                                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                    </div>
+                                    <div class="img opacity" >
+                                        <img src="/public/img/image-placeholder-food.png"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="905" data-id-vendor="4" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/saladstory.jpeg" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Salad Story                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Box hummus falafel</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            Box hummus falafel                                         </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            pilaw z ryżu, falafel jaglany, pomidorki cherry, surówka z czerwonej kapusty, ser typu greckiego. Dressing: Carrot Miso                                        </div>
+
+                                        <div class="tags">
+                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">Wegetariańskie</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">Wegańskie</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="label show-tooltip short" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">S</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">Soja</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">O</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">Orzechy</span>                                                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                    </div>
+                                    <div class="img opacity" style="background-image: url(/public/photos/3b7438fc-29d3-429e-bc69-12c000d45c58.jpg);">
+                                        <img src="/public/photos/3b7438fc-29d3-429e-bc69-12c000d45c58.jpg"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="904" data-id-vendor="4" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/saladstory.jpeg" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Salad Story                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Box kurczak chilli</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            -                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            kasza pęczak, kurczak chilli, rucola, kiełki słonecznika, surówka z czerwonej kapusty, fasolki edemame, papryka, mix pestek (dynia i słonecznik) Dressing: Orientalne Chilli                                        </div>
+
+                                        <div class="tags">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="label show-tooltip short" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">S</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">Soja</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">O</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">Orzechy</span>                                                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                    </div>
+                                    <div class="img opacity" style="background-image: url(/public/photos/9d5b3dd3-6302-4b02-8dae-84e5ce7f93f1.jpg);">
+                                        <img src="/public/photos/9d5b3dd3-6302-4b02-8dae-84e5ce7f93f1.jpg"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="903" data-id-vendor="4" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/saladstory.jpeg" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Salad Story                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Sałatka wege miska</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            -                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            szpinak, jarmuż, falafel jaglany, papryka, ciecierzyca, pomidory suszone, mix pestek (dynia i słonecznik), burak pieczony, tofu. Dressing: green goodes                                        </div>
+
+                                        <div class="tags">
+                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">Wegetariańskie</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">Wegańskie</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="label show-tooltip short" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">S</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">Soja</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">O</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">Orzechy</span>                                                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                    </div>
+                                    <div class="img opacity" style="background-image: url(/public/photos/518dc3ea-474b-45c8-b071-240ab317762b.jpg);">
+                                        <img src="/public/photos/518dc3ea-474b-45c8-b071-240ab317762b.jpg"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="902" data-id-vendor="4" class="col-md-3 one-day " style="clear:both;" >
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/saladstory.jpeg" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Salad Story                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Sałatka neapolitana</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            -                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            mix sałat, pomidory cherry, rucola, pomidory suszone, mozzarella, makaron, kurczak w ziołach, mix oliwek. Dressing : green goddes                                        </div>
+
+                                        <div class="tags">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="label show-tooltip short" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">S</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">Soja</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">O</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">Orzechy</span>                                                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                    </div>
+                                    <div class="img opacity" style="background-image: url(/public/photos/b0cfaa16-92b7-495d-bb9e-197683009a81.jpg);">
+                                        <img src="/public/photos/b0cfaa16-92b7-495d-bb9e-197683009a81.jpg"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="901" data-id-vendor="4" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/saladstory.jpeg" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Salad Story                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Mango kurczak</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            -                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            mix sałat, mango, marchew, kasza pęczak z kurkumą, kapusta czerwona, papryka, kurczak chilli. Dresiing: fistaszkowy                                        </div>
+
+                                        <div class="tags">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="label show-tooltip short" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">S</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">Soja</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">O</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #D1B300;" data-toggle="tooltip" data-container="body" data-original-title="Orzechy">Orzechy</span>                                                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                    </div>
+                                    <div class="img opacity" style="background-image: url(/public/photos/cb17f5b4-e278-4b92-ba94-460d0fc3f093.jpg);">
+                                        <img src="/public/photos/cb17f5b4-e278-4b92-ba94-460d0fc3f093.jpg"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div data-id-menu="923" data-id-vendor="3" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/fbcatering.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Family & Business                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Krem z marchwi i batata</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            Krem z marchwi i batata z mlekiem kokosowym                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            wywar warzywny, cebula, ziemniaki, marchew, bataty, mleko kokosowe, przyprawy                                        </div>
+
+                                        <div class="tags">
+                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">Wegetariańskie</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">Wegańskie</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #FFD400;" data-toggle="tooltip" data-container="body" data-original-title="Bezglutenowe">B</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFD400;" data-toggle="tooltip" data-container="body" data-original-title="Bezglutenowe">Bezglutenowe</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Danie na gorąco">D</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Danie na gorąco">Danie na gorąco</span>                                                                                                                                                                                                                                </div>
+
+                                    </div>
+                                    <div class="img opacity" style="background-image: url(/public/photos/bf72252a-b66a-4e49-a5e9-e0b214ac277d.jpg);">
+                                        <img src="/public/photos/bf72252a-b66a-4e49-a5e9-e0b214ac277d.jpg"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="920" data-id-vendor="3" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/fbcatering.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Family & Business                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Warzywa wok z sosem teryaki</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            Warzywa wok z sosem teryaki i kaszą bulgur                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            brokuł, kalafior, cebula czerwona, marchew, papryka, pieczarka, cukinia, olej , przyprawy, zioła, sos teryaki                                        </div>
+
+                                        <div class="tags">
+                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">Wegetariańskie</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">Wegańskie</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="label show-tooltip short" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Danie na gorąco">D</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Danie na gorąco">Danie na gorąco</span>                                                                                                                                                                                                                                </div>
+
+                                    </div>
+                                    <div class="img opacity" >
+                                        <img src="/public/img/image-placeholder-food.png"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="879" data-id-vendor="3" class="col-md-3 one-day " style="clear:both;" >
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/fbcatering.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Family & Business                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Zapiekanka ziemniaczano-warzywna</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            Zapiekanka ziemniaczano-warzywna z brokułami i kalafiorem i sosem paprykowym                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            ziemniaki, marchew, seler, cebula, brokuł, kalafior, jajka, śmietana, ser, papryka, pietruszka, przyprawy,                                        </div>
+
+                                        <div class="tags">
+                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">Wegetariańskie</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <span class="label show-tooltip short" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Danie na gorąco">D</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Danie na gorąco">Danie na gorąco</span>                                                                                                                                                                                                                                </div>
+
+                                    </div>
+                                    <div class="img opacity" >
+                                        <img src="/public/img/image-placeholder-food.png"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="878" data-id-vendor="3" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/fbcatering.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Family & Business                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Zupa szczawiowa</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            Zupa szczawiowa z warzywami                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            wywar mięsny, szczaw, ziemniaki, śmietana, marchew, seler                                        </div>
+
+                                        <div class="tags">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="label show-tooltip short" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Danie na gorąco">D</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Danie na gorąco">Danie na gorąco</span>                                                                                                                                                                                                                                </div>
+
+                                    </div>
+                                    <div class="img opacity" >
+                                        <img src="/public/img/image-placeholder-food.png"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="877" data-id-vendor="3" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/fbcatering.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Family & Business                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Zapiekanka ziemniaczano-warzywna z kurczakiem</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            Zapiekanka ziemniaczano-warzywna z kurczakiem, sos paprykowy                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            ziemniaki, marchew, seler, cebula, kurczak, jajka, śmietana, ser, papryka, pietruszka, przyprawy,                                        </div>
+
+                                        <div class="tags">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <span class="label show-tooltip short" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Danie na gorąco">D</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Danie na gorąco">Danie na gorąco</span>                                                                                                                                                                                                                                </div>
+
+                                    </div>
+                                    <div class="img opacity" >
+                                        <img src="/public/img/image-placeholder-food.png"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div data-id-menu="864" data-id-vendor="2" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/rukolacatering.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Rukola                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Krem z porów</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            -                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            pory, cebula, ziemniaki, śmietana, czosnek, oliwa, sól, pieprz, płatki chili                                        </div>
+
+                                        <div class="tags">
+                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">Wegetariańskie</span>                                                                                                                                                                                                                                        <span class="label show-tooltip short" style="cursor:pointer; background: #FFD400;" data-toggle="tooltip" data-container="body" data-original-title="Bezglutenowe">B</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFD400;" data-toggle="tooltip" data-container="body" data-original-title="Bezglutenowe">Bezglutenowe</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Pikantne">P</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #f44336;" data-toggle="tooltip" data-container="body" data-original-title="Pikantne">Pikantne</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+
+                                    </div>
+                                    <div class="img opacity" >
+                                        <img src="/public/img/image-placeholder-food.png"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="863" data-id-vendor="2" class="col-md-3 one-day " style="clear:both;" >
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/rukolacatering.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Rukola                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Burgery warzywne z frytkami z batata</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            Burgery warzywne z frytkami z batata i lekką sałatką                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            ciecierzyca, cebula, czosnek, marchew, sałata rzymska, papryka, kukurydza, groszek, jarmuż, bataty, sos: cebula, pieczarki, mleczko kokosowe, sałatka: miks sałat, ogórek, pomidor, oliwa, sok z cytryny, musztarda,  sól, przyprawy                                        </div>
+
+                                        <div class="tags">
+                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">Wegetariańskie</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">Wegańskie</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #FFD400;" data-toggle="tooltip" data-container="body" data-original-title="Bezglutenowe">B</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFD400;" data-toggle="tooltip" data-container="body" data-original-title="Bezglutenowe">Bezglutenowe</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                    </div>
+                                    <div class="img opacity" >
+                                        <img src="/public/img/image-placeholder-food.png"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="862" data-id-vendor="2" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/rukolacatering.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Rukola                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Eskalopki z indyka w sosie musztardowym</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            -                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            pierś indyka, kasza bulgur, koncentrat buraczany, brokuły, musztarda francuska, miód, bulion warzywny, śmietana, sos sojowy, sól, pieprz, przyprawy,                                        </div>
+
+                                        <div class="tags">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="label show-tooltip short" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">S</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFAD76;" data-toggle="tooltip" data-container="body" data-original-title="Soja">Soja</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div>
+
+                                    </div>
+                                    <div class="img opacity" style="background-image: url(/public/photos/88d1d43a-308a-4b27-addb-e76aec81cfb5.jpg);">
+                                        <img src="/public/photos/88d1d43a-308a-4b27-addb-e76aec81cfb5.jpg"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+                        <div data-id-menu="913" data-id-vendor="1" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/glodnyniedzwiedz.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Głodny Niedźwiedź                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Zupa tajska z kurczakiem i makaronem ryżowym</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            Zupa tajska z kurczakiem, makaronem ryżowym i mlekiem kokosowym                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            -                                        </div>
+
+                                        <div class="tags">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+
+                                    </div>
+                                    <div class="img opacity" style="background-image: url(/public/photos/18bac6b7-ea96-41b6-b36f-629b4681631e.jpg);">
+                                        <img src="/public/photos/18bac6b7-ea96-41b6-b36f-629b4681631e.jpg"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="849" data-id-vendor="1" class="col-md-3 one-day ">
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/glodnyniedzwiedz.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Głodny Niedźwiedź                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Tortilla z mięsem wieprzowym i warzywami </div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            -                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            -                                        </div>
+
+                                        <div class="tags">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+
+                                    </div>
+                                    <div class="img opacity" >
+                                        <img src="/public/img/image-placeholder-food.png"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div data-id-menu="848" data-id-vendor="1" class="col-md-3 one-day " style="clear:both;" >
+
+                            <div class="one-day-box">
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/glodnyniedzwiedz.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Głodny Niedźwiedź                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Risotto z kurczakiem w sosie serowo – szpinakowym</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            Risotto z kurczakiem w sosie serowo – szpinakowym i grana padano                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            -                                        </div>
+
+                                        <div class="tags">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+
+                                    </div>
+                                    <div class="img opacity" >
+                                        <img src="/public/img/image-placeholder-food.png"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                                                            <button class="btn btn-success save-selection">Order</button>
+
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                            </div>
+        </div>
+    </div>
+</div>
+
+
+

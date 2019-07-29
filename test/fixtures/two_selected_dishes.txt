@@ -1,0 +1,139 @@
+
+
+        <div class="box">
+    <h2 class="menu-closed">
+
+            <i class="fa fa-check-circle "></i>
+            <i class="fa fa-check-circle "></i>
+
+        Friday, 26/07
+        <span class="status hidden-sm hidden-xs">
+
+
+                                    You <strong>can't change</strong> your lunches for this day. Deadline was on Wednesday, 24/07 at 19:00                            </span>
+    </h2>
+
+    <div class="row menu menu-closed">
+        <div class="col-md-12">
+    <!--            <textarea style="width:100%; height:500px;">--><!--</textarea>-->
+                <div class="row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div data-id-menu="805" data-id-vendor="2" class="col-md-3 one-day  selected" style="clear:both;" >
+
+                            <div class="one-day-box">
+                                                                    <div class="check">
+                                        <i class="fa fa-check-circle"></i>
+                                    </div>
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/rukolacatering.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Rukola                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Krem z kukurydzy z mleczkiem kokosowym</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            -                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            kukurydza, imbir, cebula, czosnek, kurkuma, bulion warzywny, mleczko kokosowe, chili, słonecznik, oliwa, sól, pieprz                                        </div>
+
+                                        <div class="tags">
+                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #72BF98;" data-toggle="tooltip" data-container="body" data-original-title="Wegetariańskie">Wegetariańskie</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">W</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #44C15F;" data-toggle="tooltip" data-container="body" data-original-title="Wegańskie">Wegańskie</span>                                                                                            <span class="label show-tooltip short" style="cursor:pointer; background: #FFD400;" data-toggle="tooltip" data-container="body" data-original-title="Bezglutenowe">B</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFD400;" data-toggle="tooltip" data-container="body" data-original-title="Bezglutenowe">Bezglutenowe</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                    </div>
+                                    <div class="img opacity" >
+                                        <img src="/public/img/image-placeholder-food.png"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                    <button class="btn btn-outline-success">Ordered</button>
+                                    <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=Lunchroom%3A+Rukola&dates=20190726T100000Z/20190726T100000Z&details=Krem+z+kukurydzy+z+mleczkiem+kokosowym&location=Air+Help" class="btn btn-danger show-tooltip" target="_blank" data-toggle="tooltip" data-container="body" data-original-title="Add to Google Calendar"><i class="fa fa-calendar"></i></a>
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div data-id-menu="803" data-id-vendor="2" class="col-md-3 one-day  selected">
+
+                            <div class="one-day-box">
+                                                                    <div class="check">
+                                        <i class="fa fa-check-circle"></i>
+                                    </div>
+                                                                <div class="hover show-more-info">
+                                    <div class="show-more">
+                                        <span>Show more details</span>
+                                    </div>
+                                    <div class="content opacity">
+                                        <div class="company">
+                                            <span class="logo">
+                                                <img src="/public/img/company_logos/rukolacatering.png" width="25"/>
+                                            </span>
+                                            <span class="brand">
+                                                Rukola                                            </span>
+                                        </div>
+
+                                        <!--                            #-->                                        <div class="name">Filet z kurczaka na sosie kurkowym z młodymi ziemniakami i lekką sałatką</div>
+                                        <div class="description">
+                                            <strong>Description</strong>:
+                                            -                                        </div>
+                                        <div class="details">
+                                            <strong>Ingredients</strong>:
+                                            pierś kurczaka, ziemniaki, śmietana, kurki, kurkuma, pietruszka, cebula, koperek, sól, pieprz, miks sałat, ogórek, pomidor koktajlowy, papryka, pestki dyni, oliwa                                        </div>
+
+                                        <div class="tags">
+                                                                                                                                                                                                                                                                                                                                                                                    <span class="label show-tooltip short" style="cursor:pointer; background: #FFD400;" data-toggle="tooltip" data-container="body" data-original-title="Bezglutenowe">B</span>                                                <span class="label show-tooltip full" style="cursor:pointer; background: #FFD400;" data-toggle="tooltip" data-container="body" data-original-title="Bezglutenowe">Bezglutenowe</span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+
+                                    </div>
+                                    <div class="img opacity" style="background-image: url(/public/photos/919b0272-91f8-4ad6-ab3f-4317dd6a0ff4.jpg);">
+                                        <img src="/public/photos/919b0272-91f8-4ad6-ab3f-4317dd6a0ff4.jpg"/>
+                                    </div>
+                                </div>
+                                <div class="action-buttons opacity">
+
+                                    <button class="btn btn-outline-success">Ordered</button>
+                                    <a href="http://www.google.com/calendar/event?action=TEMPLATE&text=Lunchroom%3A+Rukola&dates=20190726T100000Z/20190726T100000Z&details=Filet+z+kurczaka+na+sosie+kurkowym+z+m%C5%82odymi+ziemniakami+i+lekk%C4%85+sa%C5%82atk%C4%85&location=Air+Help" class="btn btn-danger show-tooltip" target="_blank" data-toggle="tooltip" data-container="body" data-original-title="Add to Google Calendar"><i class="fa fa-calendar"></i></a>
+                                                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                            </div>
+        </div>
+    </div>
+</div>
+
+
+
