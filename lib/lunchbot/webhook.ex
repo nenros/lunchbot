@@ -56,7 +56,7 @@ defmodule Lunchbot.Webhook do
     command = String.to_atom(command)
 
     cond do
-      "magiclink" == command -> {:ok, Map.get(@command_to_module, command), params}
+      :magiclink == command -> {:ok, Map.get(@command_to_module, command), params}
       Map.has_key?(@command_to_module, command) -> {:ok, Map.get(@command_to_module, command), command}
       true -> {:error, :command_unknown}
     end
