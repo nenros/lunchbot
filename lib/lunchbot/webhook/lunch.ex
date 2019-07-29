@@ -67,7 +67,7 @@ defmodule Lunchbot.Webhook.Lunch do
       day when day > 4 ->
         days_to_add = 8 - Date.day_of_week(date)
         Date.add(date, days_to_add)
-      _ -> date
+      _ -> Date.add(date, 1)
     end
     |> Date.to_iso8601()
   end
