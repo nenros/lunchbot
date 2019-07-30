@@ -7,9 +7,9 @@ defmodule Lunchbot.WebhookAction.Magiclink do
          {:ok, user} <- Lunchbot.Repo.Users.update_magic_link(user, magiclink)
       do
       Task.async(fn -> update_session_for_magiclink(user) end)
-      {{:ok, put_in(webhook.response.body, %{text: "magic link updated!"})}}
+      {:ok, put_in(webhook.response.blocks, response_json)}
     else
-      {:error, error} -> {:error, error}
+      {:error, error} -> {:error, %{webhook | error: error}}
     end
   end
 
@@ -39,15 +39,20 @@ defmodule Lunchbot.WebhookAction.Magiclink do
     {:error, :no_magic_link}
   """
   def get_magiclink(params) when is_binary(params) do
-    case URI.parse(params) do
-      %{host: "airhelp.lunchroom.pl", scheme: "https"} = _url -> {:ok, params}
-      _ -> get_magiclink(nil)
+    with %{host: "airhelp.lunchroom.pl", scheme: "https", path: path} <- URI.parse(params),
+         String.starts_with?(path, "/autoLogin/") do
+      {:ok, params}
+    else
+      _ ->
+      get_magiclink(nil)
     end
   end
+
   def get_magiclink(params = [magiclink | _]) when is_list(params) do
     get_magiclink(magiclink)
   end
   def  get_magiclink(_), do: {:error, :no_magic_link}
+
 
   @doc """
   Create user or take it from webhook if it is already in db
@@ -71,5 +76,11 @@ defmodule Lunchbot.WebhookAction.Magiclink do
   end
 
   def update_session_for_magiclink(user), do: Lunchbot.Lunchroom.refresh_session_for_user(user)
+
+  def response_json, do:  """
+        *Magic link updated :male_mage:*
+
+        Now you can send `/lunch`
+      """
 
 end

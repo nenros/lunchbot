@@ -1,4 +1,4 @@
-defmodule Lunchbot.Webhook.ModuleDispatcher do
+defmodule Lunchbot.Webhook.ActionDispatcher do
   @command_to_module %{
     magiclink: Lunchbot.WebhookAction.Magiclink,
     today: Lunchbot.WebhookAction.Lunch,
@@ -9,13 +9,13 @@ defmodule Lunchbot.Webhook.ModuleDispatcher do
   @doc """
   Take webhook and on slack data set module to perform
   """
-  def dispatch_module(%{slack_data: %{text: text}} = webhook) do
-    [command | params] = String.split(text, " ")
+  def dispatch_action(webhook) do
+    [command | params] = String.split(webhook.slack_data.text, " ")
 
     case get_action_to_perform(command, params) do
       {:ok, action, params} ->
         {:ok, %{webhook | action: action, params: params}}
-      _ -> {:error, :command_unknow}
+      _ -> {:error, %{webhook | error: :command_unknow}}
     end
   end
 

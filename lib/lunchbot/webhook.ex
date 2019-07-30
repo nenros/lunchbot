@@ -1,5 +1,6 @@
 defmodule Lunchbot.Webhook do
   require Logger
+  import Lunchbot.Webhook.Errors, only: [error_to_message: 1]
   defstruct [
     :request,
     :action,
@@ -10,38 +11,28 @@ defmodule Lunchbot.Webhook do
     response: %{
       status: 200,
       body: "",
+      blocks: [],
       type: "application/json"
     },
   ]
 
-
-  @errors %{
-    magic_link_first: "You have to send magic link from email first"
-  }
-
   alias Lunchbot.Webhook
   alias Lunchbot.Webhook.SlackData
-  alias Lunchbot.Webhook.ModuleDispatcher
+  alias Lunchbot.Webhook.ActionDispatcher
   alias Lunchbot.Webhook.Authorizer
 
   def run_webhook(request) do
+    Logger.info("Running webhook")
     with {:ok, webhook} <- build_webhook(request),
          {:ok, webhook} <- slack_data(webhook),
          {:ok, webhook} <- authorize_user(webhook),
-         {:ok, webhook} <- dispatch_module(webhook) do
-      Logger.info("Running #{webhook.action} for user #{inspect(webhook.user)}")
-      Task.async(
-        fn () ->
-          webhook
-          |> run_module
-          |> send_webhook_async
-        end
-      )
-      {:ok, :webhook_async}
+         {:ok, webhook} <- dispatch_action(webhook),
+         {:ok, webhook} <- run_action(webhook) do
+      Logger.info("Action run successful, sending async response")
+      send_webhook_async(webhook)
     else
-      {:error, %{error: error}} ->
-        Logger.warn("Found error #{error}")
-        {:ok, error_to_message(error)}
+      {:error, webhook} ->
+        {:ok, send_webhook_async(webhook)}
     end
   end
 
@@ -49,32 +40,24 @@ defmodule Lunchbot.Webhook do
     {:ok, %Webhook{request: request}}
   end
 
-  def dispatch_module(request), do: ModuleDispatcher.dispatch_module(request)
+  def dispatch_action(request), do: ActionDispatcher.dispatch_action(request)
 
   def authorize_user(request), do: Authorizer.authorize_user(request)
 
   def slack_data(webhook), do: SlackData.build_slack_data(webhook)
 
   def send_webhook_async(webhook = %{error: nil}) do
-    response_url = get_in(webhook, [:slack_data, :response_url])
-    text = get_in(webhook, [:response, :body])
-    Slack.send_by_response_url(response_url, text)
+    response_url = Map.get(webhook.slack_data, :response_url)
+    blocks = webhook.response.blocks
+    Slack.send_by_response_url(response_url, blocks)
   end
 
   def send_webhook_async(webhook) do
-    response_url = get_in(webhook, [:slack_data, :response_url])
-    text = error_to_message(webhook.error)
-    Slack.send_by_response_url(response_url, text)
+    response_url = Map.get(webhook.slack_data, :response_url)
+    Slack.send_by_response_url(response_url, [error_to_message(webhook.error)])
   end
 
-  def run_module(webhook = %Webhook{action: action}) do
+  def run_action(webhook = %Webhook{action: action}) do
     Kernel.apply(action, :perform, [webhook])
-  end
-
-  def error_to_message(error) do
-    case Map.has_key?(@errors, error) do
-      true -> Map.get(@errors, error)
-      _ -> "Unknown error, please contact creator"
-    end
   end
 end

@@ -1,80 +1,58 @@
 defmodule Lunchbot.WebhookAction.Lunch do
   @moduledoc false
 
-  def perform(%Lunchbot.Webhook{user: nil}), do: {:error, :magic_link_first}
+  def perform(%Lunchbot.Webhook{user: nil} = webhook),
+      do: {:error, %{webhook | error: :magic_link_first}}
 
   def perform(webhook = %Lunchbot.Webhook{}) do
-    %{
-      user: %{
-        session_id: session_id
-      }
-    } = webhook
-    {:ok, lunch} = Lunchbot.Lunchroom.Lunch.get_lunch(session_id, get_iso_day(Map.get(webhook, :params)))
-    response = dishes_to_slack_message(lunch)
+    session_id = webhook.user.session_id
 
-    {:ok, put_in(webhook.response.body, response)}
+    with {:ok, date} <- get_iso_day(Map.get(webhook, :params)),
+         {:ok, lunch} <- Lunchbot.Lunchroom.Lunch.get_lunch(session_id, date) do
+      response =
+      {:ok, put_in(webhook.response.blocks, lunch_to_slack_message(lunch, date))}
+    else
+      {:ok, :no_lunch_choosen} -> {:ok, put_in(webhook.response.block, no_lunch_choosen())}
+    end
   end
 
   def get_iso_day(:today), do: get_today()
   def get_iso_day(:tomorrow), do: get_tomorrow()
   def get_iso_day(_), do: get_today()
 
-  def dishes_to_slack_message(lunch) do
-    %{
-      text: "Lunch for day",
-      blocks: [format_company(lunch)] ++ format_dishes(lunch.dishes)
-    }
-  end
+  def lunch_to_slack_message(lunch, date), do:
+     [{"*Lunch for day*: #{date}"}, format_company(lunch)] ++ format_dishes(lunch.dishes)
 
-  defp format_company(%{company: company, company_image: company_image}), do:
-    build_section_block("*#{company}*", company_image, company)
+  defp format_company(%{company: company, company_image: company_image} = lunch), do:
+    {to_string(lunch), company_image, company}
 
   defp format_dishes(dishes) do
     Enum.map(
       dishes,
       fn
-        %{image: ""} = dish ->
-          build_section_block(to_string(dish))
-        %{ image: image} = dish ->
-          build_section_block(to_string(dish), image, "dish")
+        %{image: nil} = dish ->
+          to_string(dish)
+        %{image: image} = dish ->
+          {to_string(dish), image, dish.name}
       end
     )
   end
 
-  defp build_section_block(text) do
-    %{
-      type: "section",
-      text: %{
-        type: "mrkdwn",
-        text: text
-      }
-    }
-  end
-
-  defp build_section_block(text, image, image_text) do
-    Map.put(
-      build_section_block(text),
-      :accessory,
-      %{
-        type: "image",
-        image_url: image,
-        alt_text: image_text
-      }
-    )
-  end
-
-
-  defp get_today(), do: Date.utc_today()
-                        |> Date.to_iso8601
+  defp get_today(), do: {:ok, Date.utc_today()
+                        |> Date.to_iso8601}
 
   defp get_tomorrow() do
-    date = Date.utc_today()
-    case Date.day_of_week(date) do
+    today = Date.utc_today()
+    next_day = case Date.day_of_week(today) do
       day when day > 4 ->
-        days_to_add = 8 - Date.day_of_week(date)
-        Date.add(date, days_to_add)
-      _ -> Date.add(date, 1)
+        days_to_add = 8 - day
+        Date.add(today, days_to_add)
+      _ -> Date.add(today, 1)
     end
-    |> Date.to_iso8601()
+    {:ok, next_day}
   end
+
+  defp no_lunch_choosen, do: {"""
+  *You haven't choose any lunch for today :disappointed_relieved:*
+  """}
 end
