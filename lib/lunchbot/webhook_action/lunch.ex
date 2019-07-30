@@ -1,5 +1,7 @@
-defmodule Lunchbot.Webhook.Lunch do
+defmodule Lunchbot.WebhookAction.Lunch do
   @moduledoc false
+
+  def perform(%Lunchbot.Webhook{user: nil}), do: {:error, :magic_link_first}
 
   def perform(webhook = %Lunchbot.Webhook{}) do
     %{
@@ -31,10 +33,10 @@ defmodule Lunchbot.Webhook.Lunch do
     Enum.map(
       dishes,
       fn
-        %{details: details, name: name, image: ""} ->
-          build_section_block("*Dish*: #{name}\n *Description*: #{details}")
-        %{details: details, name: name, image: image} ->
-          build_section_block("Dish: #{name}\n Description: #{details}", image, "dish")
+        %{image: ""} = dish ->
+          build_section_block(to_string(dish))
+        %{ image: image} = dish ->
+          build_section_block(to_string(dish), image, "dish")
       end
     )
   end
@@ -50,11 +52,15 @@ defmodule Lunchbot.Webhook.Lunch do
   end
 
   defp build_section_block(text, image, image_text) do
-    Map.put(build_section_block(text), :accessory, %{
-      type: "image",
-      image_url: image,
-      alt_text: image_text
-    })
+    Map.put(
+      build_section_block(text),
+      :accessory,
+      %{
+        type: "image",
+        image_url: image,
+        alt_text: image_text
+      }
+    )
   end
 
 
