@@ -2,7 +2,7 @@ defmodule Lunchbot.Lunchroom.Lunch do
   defstruct [:company, :company_image, dishes: []]
   use HTTPoison.Base
 
-
+  alias Lunchbot.Lunchroom.Lunch
 
   @lunchroom_endpoint "https://airhelp.lunchroom.pl"
 
@@ -11,19 +11,15 @@ defmodule Lunchbot.Lunchroom.Lunch do
   end
 
   def process_response_body(body) do
-    with {:ok, data} <- Lunchbot.Lunchroom.Lunch.HTMLParser.parse(body), do:
-       %{
-        company: Map.get(List.first(data), :company),
-        company_image: Map.get(List.first(data), :company_image),
-        dishes: Enum.map(
-          data,
-          fn x -> struct!(
-                    Lunchbot.Lunchroom.Lunch.Dish,
-                    Map.take(x, [:name, :details, :image])
-                  )
-          end
-        )
-      }
+    case Lunchbot.Lunchroom.Lunch.HTMLParser.parse(body) do
+      {:ok, data} when data != [] ->
+        struct(Lunch, %{
+          company: Map.get(List.first(data), :company),
+          company_image: Map.get(List.first(data), :company_image),
+          dishes: map_dishes(data)
+        })
+      {:ok, _} -> :no_lunch_choosen
+    end
   end
 
   def get_lunch(session_id, day) do
@@ -38,5 +34,13 @@ defmodule Lunchbot.Lunchroom.Lunch do
     end
   end
 
+  defp map_dishes(data), do:
+    for dish <- data, into: [], do: struct(Lunchbot.Lunchroom.Lunch.Dish, dish)
 
+  defimpl String.Chars do
+    def to_string(%{company: company}), do:
+      """
+      *Company*: #{company}
+      """
+  end
 end

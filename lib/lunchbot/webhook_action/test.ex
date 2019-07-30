@@ -1,4 +1,4 @@
-defmodule Lunchbot.Webhook.Test do
+defmodule Lunchbot.WebhookAction.Test do
   @moduledoc false
 
   def perform(webhook) do

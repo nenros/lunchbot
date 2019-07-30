@@ -9,7 +9,7 @@ defmodule Lunchbot.Lunchroom.Lunch.HTMLParser do
   ]
 
   @images_selectors [
-    image: "div.show-more-info img",
+    image: ".img.opacity img",
     company_image: "span.logo img"
   ]
 
@@ -49,10 +49,10 @@ defmodule Lunchbot.Lunchroom.Lunch.HTMLParser do
   def get_image_src(html, selector) do
     case Floki.find(html, selector) do
       [{_, attrs, _}] ->
-        {_, v} = Enum.find(attrs, fn {k, v} -> k == "src" end)
+        {_, v} = Enum.find(attrs, fn {k, _} -> k == "src" end)
         "#{@image_prefix}#{v}"
       _ ->
-        ""
+        nil
     end
   end
 end

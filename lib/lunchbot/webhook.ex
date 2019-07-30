@@ -1,78 +1,63 @@
 defmodule Lunchbot.Webhook do
+  require Logger
+  import Lunchbot.Webhook.Errors, only: [error_to_message: 1]
   defstruct [
-    :module,
+    :request,
+    :action,
     :params,
     :user,
+    :error,
     slack_data: %{},
     response: %{
       status: 200,
       body: "",
+      blocks: [],
       type: "application/json"
-    }
+    },
   ]
 
-  @slack_params ["user_id", "user_name", "text"]
-  @command_to_module %{
-    magiclink: Lunchbot.Webhook.Magiclink,
-    today: Lunchbot.Webhook.Lunch,
-    tomorrow: Lunchbot.Webhook.Lunch
-  }
-
   alias Lunchbot.Webhook
+  alias Lunchbot.Webhook.SlackData
+  alias Lunchbot.Webhook.ActionDispatcher
+  alias Lunchbot.Webhook.Authorizer
 
-  @doc """
-  Take webhook and request body to extract needed slack data
-  """
-  def get_slack_data(webhook = %Webhook{}, data) do
-    params = data
-             |> URI.decode_query
-             |> Map.take(@slack_params)
-             |> Map.new(fn {k, v} -> {String.to_atom(k), v} end)
-
-    {:ok, Map.put(webhook, :slack_data, params)}
-  end
-
-  @doc """
-  Take webhook and on slack data set module to perform
-  """
-  def set_action_to_perform(webhook = %Webhook{slack_data: slack_data}) do
-    %{text: text} = slack_data
-    [command | params] = String.split(text, " ")
-
-    case get_action_to_perform(command, params) do
-      {:ok, action, params} ->
-        webhook = webhook
-                  |> Map.put(:module, action)
-                  |> Map.put(:params, params)
-        {:ok, webhook}
-      _ -> {:error, :command_unknow}
+  def run_webhook(request) do
+    Logger.info("Running webhook")
+    with {:ok, webhook} <- build_webhook(request),
+         {:ok, webhook} <- slack_data(webhook),
+         {:ok, webhook} <- authorize_user(webhook),
+         {:ok, webhook} <- dispatch_action(webhook),
+         {:ok, webhook} <- run_action(webhook) do
+      Logger.info("Action run successful, sending async response")
+      send_webhook_async(webhook)
+    else
+      {:error, webhook} ->
+        {:ok, send_webhook_async(webhook)}
     end
   end
 
-  defp get_action_to_perform("", _params),
-       do: {:ok, Map.get(@command_to_module, :today), ""}
-
-  defp get_action_to_perform(command, params) do
-    command = String.to_atom(command)
-
-    cond do
-      :magiclink == command -> {:ok, Map.get(@command_to_module, command), params}
-      Map.has_key?(@command_to_module, command) -> {:ok, Map.get(@command_to_module, command), command}
-      true -> {:error, :command_unknown}
-    end
+  def build_webhook(request) do
+    {:ok, %Webhook{request: request}}
   end
 
-  def set_user_if_exists(webhook = %Webhook{slack_data: slack_data}) do
-    case Lunchbot.Repo.Users.find_user_by_user_id(slack_data.user_id) do
-      user = %Lunchbot.Repo.Users.User{} -> {:ok, Map.put(webhook, :user, user)}
-      _ -> {:ok, webhook}
-    end
+  def dispatch_action(request), do: ActionDispatcher.dispatch_action(request)
+
+  def authorize_user(request), do: Authorizer.authorize_user(request)
+
+  def slack_data(webhook), do: SlackData.build_slack_data(webhook)
+
+  def send_webhook_async(webhook = %{error: nil}) do
+    response_url = Map.get(webhook.slack_data, :response_url)
+    blocks = webhook.response.blocks
+    Slack.send_by_response_url(response_url, blocks)
   end
 
-  def perform_action(webhook = %Webhook{module: module}) do
-    {:ok, webhook} = Kernel.apply(module, :perform, [webhook])
-    {:ok, webhook}
+  def send_webhook_async(webhook) do
+    response_url = Map.get(webhook.slack_data, :response_url)
+    Slack.send_by_response_url(response_url, [error_to_message(webhook.error)])
   end
 
-  def get_possible_actions_with_modules(), do: @command_to_module
+  def run_action(webhook = %Webhook{action: action}) do
+    Kernel.apply(action, :perform, [webhook])
+  end
 end
