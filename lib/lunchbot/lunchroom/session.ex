@@ -3,7 +3,6 @@ defmodule Lunchbot.Lunchroom.Session do
 
 
   def get_session_for_user(%{magiclink: magiclink}) do
-    IO.inspect(magiclink)
     case HTTPoison.get magiclink do
       {:ok, %HTTPoison.Response{headers: headers}} ->
         {:ok, read_session_id(headers)}
