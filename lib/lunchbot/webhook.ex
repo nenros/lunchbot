@@ -28,7 +28,7 @@ defmodule Lunchbot.Webhook do
          {:ok, webhook} <- authorize_user(webhook),
          {:ok, webhook} <- dispatch_action(webhook),
          {:ok, webhook} <- run_action(webhook) do
-      Logger.info("Action run successful, sending async response")
+      Logger.info("Action #{webhook.action} run successful, sending async response")
       send_webhook_async(webhook)
     else
       {:error, webhook} ->
