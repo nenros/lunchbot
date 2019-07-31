@@ -18,7 +18,7 @@ defmodule Lunchbot.Lunchroom.Lunch do
           company_image: Map.get(List.first(data), :company_image),
           dishes: map_dishes(data)
         })
-      {:ok, _} -> {:error, :no_lunch_choosen}
+      {:error, _} -> {:error, :no_lunch_choosen}
     end
   end
 
