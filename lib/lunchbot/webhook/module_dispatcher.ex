@@ -28,7 +28,7 @@ defmodule Lunchbot.Webhook.ActionDispatcher do
     cond do
       :magiclink == command -> {:ok, Map.get(@command_to_module, command), params}
       Map.has_key?(@command_to_module, command) -> {:ok, Map.get(@command_to_module, command), command}
-      true -> {:ok, Lunchbot.Webhook.Help, []}
+      true -> {:ok, Lunchbot.WebhookAction.Help, []}
     end
   end
 
