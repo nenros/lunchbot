@@ -3,6 +3,8 @@ defmodule Lunchbot.WebhookAction.Lunch do
 
   def perform(%Lunchbot.Webhook{user: nil} = webhook),
       do: {:error, %{webhook | error: :magic_link_first}}
+  def perform(%Lunchbot.Webhook{user: %{session_id: nil}} = webhook),
+      do: {:error, %{webhook | error: :magic_link_first}}    
 
   def perform(webhook = %Lunchbot.Webhook{}) do
     session_id = webhook.user.session_id
