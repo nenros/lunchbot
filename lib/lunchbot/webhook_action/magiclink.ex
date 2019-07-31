@@ -7,7 +7,7 @@ defmodule Lunchbot.WebhookAction.Magiclink do
          {:ok, user} <- Lunchbot.Repo.Users.update_magic_link(user, magiclink)
       do
       Task.async(fn -> update_session_for_magiclink(user) end)
-      {:ok, put_in(webhook.response.blocks, response_json)}
+      {:ok, put_in(webhook.response.blocks, [response_json])}
     else
       {:error, error} -> {:error, %{webhook | error: error}}
     end
