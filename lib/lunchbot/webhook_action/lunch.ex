@@ -11,7 +11,7 @@ defmodule Lunchbot.WebhookAction.Lunch do
          {:ok, lunch} <- Lunchbot.Lunchroom.Lunch.get_lunch(session_id, date) do
       {:ok, put_in(webhook.response.blocks, lunch_to_slack_message(lunch, date))}
     else
-      {:error, :no_lunch_choosen} -> {:ok, put_in(webhook.response.block, no_lunch_choosen())}
+      {:error, :no_lunch_choosen} -> {:ok, put_in(webhook.response.blocks, no_lunch_choosen())}
     end
   end
 
