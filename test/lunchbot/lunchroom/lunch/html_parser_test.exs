@@ -17,7 +17,7 @@ defmodule Lunchbot.Lunchroom.Lunch.HTMLParserTest do
                    company: "Salad Story",
                    company_image: "https://airhelp.lunchroom.pl/public/img/company_logos/saladstory.jpeg",
                    details: "mix sałat, pomidory cherry, mix oliwek, fasolka szparagowa, pieczone ziemniaczki , tuńczyk, jajko. Dressing: vinegrette",
-                   image: "",
+                   image: "https://airhelp.lunchroom.pl/public/photos/e19b4b11-c005-44a6-9e64-1fa0caf9dd6f.jpg",
                    name: "Sałatka nicejska"
                  }
                ]
@@ -35,14 +35,14 @@ defmodule Lunchbot.Lunchroom.Lunch.HTMLParserTest do
                    company: "Rukola",
                    company_image: "https://airhelp.lunchroom.pl/public/img/company_logos/rukolacatering.png",
                    details: "kukurydza, imbir, cebula, czosnek, kurkuma, bulion warzywny, mleczko kokosowe, chili, słonecznik, oliwa, sól, pieprz",
-                   image: "",
+                   image: "https://airhelp.lunchroom.pl/public/img/image-placeholder-food.png",
                    name: "Krem z kukurydzy z mleczkiem kokosowym"
                  },
                  %{
                    company: "Rukola",
                    company_image: "https://airhelp.lunchroom.pl/public/img/company_logos/rukolacatering.png",
                    details: "pierś kurczaka, ziemniaki, śmietana, kurki, kurkuma, pietruszka, cebula, koperek, sól, pieprz, miks sałat, ogórek, pomidor koktajlowy, papryka, pestki dyni, oliwa",
-                   image: "",
+                   image: "https://airhelp.lunchroom.pl/public/photos/919b0272-91f8-4ad6-ab3f-4317dd6a0ff4.jpg",
                    name: "Filet z kurczaka na sosie kurkowym z młodymi ziemniakami i lekką sałatką"
                  }
                ]
