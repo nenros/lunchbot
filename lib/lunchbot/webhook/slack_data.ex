@@ -5,8 +5,7 @@ defmodule Lunchbot.Webhook.SlackData do
   Take webhook and request body to extract needed slack data
   """
   def build_slack_data(webhook) do
-    params = webhook.request.body
-             |> URI.decode_query
+    params = webhook.request.params
              |> Map.take(@slack_params)
              |> Map.new(fn {k, v} -> {String.to_atom(k), v} end)
 

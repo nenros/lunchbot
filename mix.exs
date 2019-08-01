@@ -24,8 +24,7 @@ defmodule Lunchbot.Mixfile do
 
   defp deps do
     [
-      {:ace, "~> 0.18.6"},
-      {:raxx_logger, "~> 0.2.2"},
+      {:plug_cowboy, "~> 2.0"},
       {:jason, "~> 1.0"},
       {:exsync, "~> 0.2.3", only: :dev},
       {:postgrex, ">= 0.0.0"},
