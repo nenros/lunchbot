@@ -1,5 +1,6 @@
 defmodule Lunchbot.Server.Router do
   use Plug.Router
+  use ScoutApm.Instrumentation
 
   if Mix.env() == :dev do
     use Plug.Debugger, otp_app: :lunchbot
