@@ -23,6 +23,7 @@ defmodule Lunchbot.Webhook do
   alias Lunchbot.Webhook.Authorizer
 
   def run_webhook(request) do
+
     Logger.info("Running webhook")
 
     with {:ok, webhook} <- build_webhook(request),

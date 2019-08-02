@@ -9,6 +9,10 @@ defmodule Lunchbot.Application do
       Plug.Cowboy.child_spec(scheme: :http, plug: Lunchbot.Server.Router, options: [port: port()])
     ]
 
+    if Mix.env() == :prod do
+      :ok = ScoutApm.Instruments.EctoTelemetry.attach(Lunchbot.Repo)
+    end
+
     opts = [strategy: :one_for_one, name: Lunchbot.Supervisor]
     Supervisor.start_link(children, opts)
   end

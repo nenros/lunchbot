@@ -10,11 +10,6 @@ config :lunchbot, Lunchbot.Repo,
 if Mix.env() == :prod do
   config :logger,
          level: :info
-
-  config :lunchbot,
-         Lunchbot.Repo,
-         loggers: [{Ecto.LogEntry, :log, []},
-           {ScoutApm.Instruments.EctoLogger, :log, []}]
 end
 
 if Mix.env() == :test do
