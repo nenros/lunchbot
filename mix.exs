@@ -29,6 +29,7 @@ defmodule Lunchbot.Mixfile do
       {:exsync, "~> 0.2.3", only: :dev},
       {:postgrex, ">= 0.0.0"},
       {:ecto_sql, "~> 3.0.0"},
+      {:new_relic_agent, "~> 1.0"},
       {:httpoison, "~> 1.4"},
       {:floki, "~> 0.21.0"},
       {:ex_machina, "~> 2.3", only: :test},
