@@ -18,6 +18,7 @@ defmodule Lunchbot.Server.Router do
   alias Lunchbot.Server.Command
 
 
+  get "/", do: send_resp(conn, 200, "")
   post "webhook", do: Command.lunch(conn)
 
 end
