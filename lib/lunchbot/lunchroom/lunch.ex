@@ -13,11 +13,15 @@ defmodule Lunchbot.Lunchroom.Lunch do
   def process_response_body(body) do
     case Lunchbot.Lunchroom.Lunch.HTMLParser.parse(body) do
       {:ok, data} when data != [] ->
-        struct(Lunch, %{
-          company: Map.get(List.first(data), :company),
-          company_image: Map.get(List.first(data), :company_image),
-          dishes: map_dishes(data)
-        })
+        struct(
+          Lunch,
+          %{
+            company: Map.get(List.first(data), :company),
+            company_image: Map.get(List.first(data), :company_image),
+            dishes: map_dishes(data)
+          }
+        )
+      {:ok, []} -> {:error, :no_lunch_choosen}
       {:error, _} -> {:error, :no_lunch_choosen}
     end
   end
