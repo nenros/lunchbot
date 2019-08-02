@@ -7,6 +7,11 @@ config :lunchbot, Lunchbot.Repo,
   # it can be overridden using the DATABASE_URL environment variable
   url: "ecto://kuoGfGzy:y_MiBPcpiDGsR2VHB_@localhost:6543/lunchbot?ssl=false&pool_size=10"
 
+if Mix.env() == :prod do
+  config :logger,
+    level: :info
+end
+
 if Mix.env() == :test do
   config :lunchbot, Lunchbot.Repo,
     # it can be overridden using the DATABASE_URL environment variable
