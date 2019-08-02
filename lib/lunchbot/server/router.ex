@@ -2,7 +2,7 @@ defmodule Lunchbot.Server.Router do
   use Plug.Router
 
   if Mix.env() == :prod do
-    use NewRelic.Transaction
+    use ScoutApm.Instrumentation
   end
 
   if Mix.env() == :dev do

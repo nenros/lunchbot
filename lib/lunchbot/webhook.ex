@@ -1,6 +1,5 @@
 defmodule Lunchbot.Webhook do
   require Logger
-  use NewRelic.Tracer
   import Lunchbot.Webhook.Errors, only: [error_to_message: 1]
 
   defstruct [
@@ -23,7 +22,6 @@ defmodule Lunchbot.Webhook do
   alias Lunchbot.Webhook.ActionDispatcher
   alias Lunchbot.Webhook.Authorizer
 
-  @trace :run_webhook
   def run_webhook(request) do
     Logger.info("Running webhook")
 
