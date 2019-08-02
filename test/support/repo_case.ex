@@ -4,11 +4,11 @@ defmodule Lunchbot.RepoCase do
 
   using do
     quote do
-       alias Lunchbot.Repo
+      alias Lunchbot.Repo
 
-       import Ecto
-       import Ecto.Query
-       import Lunchbot.RepoCase
+      import Ecto
+      import Ecto.Query
+      import Lunchbot.RepoCase
     end
   end
 
@@ -22,4 +22,3 @@ defmodule Lunchbot.RepoCase do
     :ok
   end
 end
-

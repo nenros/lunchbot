@@ -21,8 +21,12 @@ defmodule Lunchbot.Lunchroom.Lunch do
             dishes: map_dishes(data)
           }
         )
-      {:ok, []} -> {:error, :no_lunch_choosen}
-      {:error, _} -> {:error, :no_lunch_choosen}
+
+      {:ok, []} ->
+        {:error, :no_lunch_choosen}
+
+      {:error, _} ->
+        {:error, :no_lunch_choosen}
     end
   end
 
@@ -38,12 +42,12 @@ defmodule Lunchbot.Lunchroom.Lunch do
     end
   end
 
-  defp map_dishes(data), do:
-    for dish <- data, into: [], do: struct(Lunchbot.Lunchroom.Lunch.Dish, dish)
+  defp map_dishes(data),
+    do: for(dish <- data, into: [], do: struct(Lunchbot.Lunchroom.Lunch.Dish, dish))
 
   defimpl String.Chars do
-    def to_string(%{company: company}), do:
-      """
+    def to_string(%{company: company}),
+      do: """
       *Company*: #{company}
       """
   end

@@ -17,28 +17,32 @@ defmodule Slack do
     %{
       blocks: Enum.map(body, &build_section_block(&1))
     }
-    |> Jason.encode!
+    |> Jason.encode!()
   end
 
   def send_by_response_url(hook_url, data) do
     case post(hook_url, data) do
-      {:ok, %{body: "ok", request: request}} -> Logger.info("Response sent correctly")
-      {:ok, %{body: error, request: request}} -> Logger.error("Slack error: #{error}, Request: #{inspect(request)}")
-      {:error, error} -> Logger.error("Error: #{error} when response sent")
+      {:ok, %{body: "ok", request: request}} ->
+        Logger.info("Response sent correctly")
+
+      {:ok, %{body: error, request: request}} ->
+        Logger.error("Slack error: #{error}, Request: #{inspect(request)}")
+
+      {:error, error} ->
+        Logger.error("Error: #{error} when response sent")
     end
   end
 
-  defp build_section_block(text) when is_binary(text), do:
-  %{
-    type: "section",
-    text: %{
-      type: "mrkdwn",
-      text: text
+  defp build_section_block(text) when is_binary(text),
+    do: %{
+      type: "section",
+      text: %{
+        type: "mrkdwn",
+        text: text
+      }
     }
-  }
 
-  defp build_section_block({text}), do:
-    build_section_block(text)
+  defp build_section_block({text}), do: build_section_block(text)
 
   defp build_section_block({text, image, image_text}) do
     Map.put(
@@ -51,5 +55,4 @@ defmodule Slack do
       }
     )
   end
-
 end

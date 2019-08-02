@@ -5,8 +5,9 @@ defmodule Lunchbot.API.Actions.WelcomeMessageTest do
   alias Lunchbot.API.Actions.WelcomeMessage
 
   test "returns welcome message for a name" do
-    request = Raxx.request(:POST, "/")
-    |> Lunchbot.API.set_json_payload(%{name: "Fiona"})
+    request =
+      Raxx.request(:POST, "/")
+      |> Lunchbot.API.set_json_payload(%{name: "Fiona"})
 
     response = WelcomeMessage.handle_request(request, %{})
 
@@ -17,8 +18,9 @@ defmodule Lunchbot.API.Actions.WelcomeMessageTest do
   end
 
   test "returns bad request for bad payload" do
-    request = Raxx.request(:POST, "/")
-    |> Lunchbot.API.set_json_payload(%{})
+    request =
+      Raxx.request(:POST, "/")
+      |> Lunchbot.API.set_json_payload(%{})
 
     response = WelcomeMessage.handle_request(request, %{})
 

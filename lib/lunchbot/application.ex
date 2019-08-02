@@ -5,10 +5,8 @@ defmodule Lunchbot.Application do
 
   def start(_type, _args) do
     children = [
-
       Lunchbot.Repo,
       Plug.Cowboy.child_spec(scheme: :http, plug: Lunchbot.Server.Router, options: [port: port()])
-
     ]
 
     opts = [strategy: :one_for_one, name: Lunchbot.Supervisor]

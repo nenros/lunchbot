@@ -19,6 +19,7 @@ defmodule Lunchbot.Webhook.MagiclinkTest do
 
     test "return user from struct if exists" do
       {:ok, user} = Lunchbot.Repo.Users.create_user(@slack_data)
+
       given = %Lunchbot.Webhook{
         slack_data: @slack_data,
         user: user
@@ -37,6 +38,5 @@ defmodule Lunchbot.Webhook.MagiclinkTest do
       assert user.user_id == @slack_data.user_id
       assert user.user_name == @slack_data.user_name
     end
-
   end
 end

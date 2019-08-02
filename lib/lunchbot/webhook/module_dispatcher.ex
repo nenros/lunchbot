@@ -15,20 +15,27 @@ defmodule Lunchbot.Webhook.ActionDispatcher do
     case get_action_to_perform(command, params) do
       {:ok, action, params} ->
         {:ok, %{webhook | action: action, params: params}}
-      _ -> {:error, %{webhook | error: :command_unknow}}
+
+      _ ->
+        {:error, %{webhook | error: :command_unknow}}
     end
   end
 
   defp get_action_to_perform("", _params),
-       do: {:ok, Map.get(@command_to_module, :today), ""}
+    do: {:ok, Map.get(@command_to_module, :today), ""}
 
   defp get_action_to_perform(command, params) do
     command = String.to_atom(command)
 
     cond do
-      :magiclink == command -> {:ok, Map.get(@command_to_module, command), params}
-      Map.has_key?(@command_to_module, command) -> {:ok, Map.get(@command_to_module, command), command}
-      true -> {:ok, Lunchbot.WebhookAction.Help, []}
+      :magiclink == command ->
+        {:ok, Map.get(@command_to_module, command), params}
+
+      Map.has_key?(@command_to_module, command) ->
+        {:ok, Map.get(@command_to_module, command), command}
+
+      true ->
+        {:ok, Lunchbot.WebhookAction.Help, []}
     end
   end
 

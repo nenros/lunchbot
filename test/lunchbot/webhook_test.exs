@@ -26,10 +26,10 @@ defmodule Lunchbot.WebhookTest do
   describe "#set_action_to_perform" do
     @actions [
       {"today", Webhook.Lunch, []},
-      {"magiclink https://magiclink/test", Webhook.Magiclink, ["https://magiclink/test"]},
+      {"magiclink https://magiclink/test", Webhook.Magiclink, ["https://magiclink/test"]}
     ]
 
-    ExUnit.Case.register_attribute __ENV__, :action
+    ExUnit.Case.register_attribute(__ENV__, :action)
 
     Enum.each(
       @actions,
@@ -43,21 +43,25 @@ defmodule Lunchbot.WebhookTest do
                }
              } do
           {command, module, param} = action
+
           given = %Webhook{
             slack_data: %{
               text: command
             }
           }
-          expected = given
-                     |> Map.put(:module, module)
-                     |> Map.put(:params, param)
+
+          expected =
+            given
+            |> Map.put(:module, module)
+            |> Map.put(:params, param)
+
           assert {:ok, expected} == Lunchbot.Webhook.set_action_to_perform(given)
         end
       end
     )
 
     test "ensure actions exists" do
-      Webhook.get_possible_actions_with_modules
+      Webhook.get_possible_actions_with_modules()
       |> Map.values()
       |> Enum.each(fn module -> assert is_list(module.module_info()) end)
     end
@@ -68,6 +72,7 @@ defmodule Lunchbot.WebhookTest do
           text: "unknown"
         }
       }
+
       assert {:error, :command_unknow} == Lunchbot.Webhook.set_action_to_perform(given)
     end
   end
@@ -80,6 +85,7 @@ defmodule Lunchbot.WebhookTest do
       given = %Webhook{
         slack_data: slack_data
       }
+
       expected = %Webhook{
         user: user,
         slack_data: slack_data
@@ -97,23 +103,23 @@ defmodule Lunchbot.WebhookTest do
 
       assert Webhook.set_user_if_exists(given) == {:ok, given}
     end
-
   end
 
   describe "#perform_action" do
     body = %{text: "test"}
+
     given = %Webhook{
       module: Webhook.Test,
       params: [body]
     }
 
-    expected = Map.put(given, :response, %{
-      status_code: 200,
-      type: "application/json",
-      body: body
-    })
+    expected =
+      Map.put(given, :response, %{
+        status_code: 200,
+        type: "application/json",
+        body: body
+      })
 
     assert Webhook.perform_action(given) == {:ok, expected}
   end
-
 end

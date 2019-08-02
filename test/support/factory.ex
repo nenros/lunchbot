@@ -1,5 +1,6 @@
 defmodule Lunchbot.Factory do
   use ExMachina
+
   @dish_name [
     "Box hummus falafel",
     "Box kurczak chilli",
@@ -7,7 +8,7 @@ defmodule Lunchbot.Factory do
     "Sałatka neapolitana",
     "Mango kurczak",
     "Krem z marchwi i batata",
-    "Warzywa wok z sosem teryaki",
+    "Warzywa wok z sosem teryaki"
   ]
 
   @dish_ingredients [
@@ -16,7 +17,7 @@ defmodule Lunchbot.Factory do
     "szpinak, jarmuż, falafel jaglany, papryka, ciecierzyca, pomidory suszone, mix pestek (dynia i słonecznik), burak pieczony, tofu. Dressing: green goodes",
     "mix sałat, pomidory cherry, rucola, pomidory suszone, mozzarella, makaron, kurczak w ziołach, mix oliwek. Dressing : green goddes",
     "mix sałat, mango, marchew, kasza pęczak z kurkumą, kapusta czerwona, papryka, kurczak chilli. Dresiing: fistaszkowy",
-    "wywar warzywny, cebula, ziemniaki, marchew, bataty, mleko kokosowe, przyprawy",
+    "wywar warzywny, cebula, ziemniaki, marchew, bataty, mleko kokosowe, przyprawy"
   ]
 
   def html_dishes_factory do
@@ -24,7 +25,7 @@ defmodule Lunchbot.Factory do
       company: "Airhelp",
       company_image: "https://airhelp.lunchroom.pl/public/img/company_logos/airhelp.png",
       name: sequence(:dish_name, @dish_name),
-      details: sequence(:dish_name, @dish_ingredients),
+      details: sequence(:dish_name, @dish_ingredients)
     }
   end
 
@@ -43,7 +44,4 @@ defmodule Lunchbot.Factory do
       image: "http://image"
     }
   end
-
-
-
 end

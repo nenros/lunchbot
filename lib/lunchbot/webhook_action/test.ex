@@ -2,7 +2,8 @@ defmodule Lunchbot.WebhookAction.Test do
   @moduledoc false
 
   def perform(webhook) do
-    [body | _ ] = webhook.params
+    [body | _] = webhook.params
+
     response = %{
       status_code: 200,
       type: "application/json",

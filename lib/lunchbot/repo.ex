@@ -1,7 +1,7 @@
 defmodule Lunchbot.Repo do
   use Ecto.Repo,
-  otp_app: :lunchbot,
-  adapter: Ecto.Adapters.Postgres
+    otp_app: :lunchbot,
+    adapter: Ecto.Adapters.Postgres
 
   def init(_type, config) do
     # SEE https://hexdocs.pm/ecto/Ecto.Repo.html#module-urls for details
@@ -9,10 +9,11 @@ defmodule Lunchbot.Repo do
       case System.get_env("DATABASE_URL") do
         not_set when not_set in [nil, ""] ->
           config
+
         url ->
           Keyword.put(config, :url, url)
       end
+
     {:ok, config}
   end
 end
-

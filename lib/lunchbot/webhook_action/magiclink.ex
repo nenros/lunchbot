@@ -4,8 +4,7 @@ defmodule Lunchbot.WebhookAction.Magiclink do
   def perform(webhook = %Lunchbot.Webhook{params: params}) do
     with {:ok, magiclink} <- get_magiclink(params),
          {:ok, user} <- get_or_create_user(webhook),
-         {:ok, user} <- Lunchbot.Repo.Users.update_magic_link(user, magiclink)
-      do
+         {:ok, user} <- Lunchbot.Repo.Users.update_magic_link(user, magiclink) do
       Task.async(fn -> update_session_for_magiclink(user) end)
       {:ok, put_in(webhook.response.blocks, [response_json])}
     else
@@ -44,20 +43,22 @@ defmodule Lunchbot.WebhookAction.Magiclink do
       {:ok, params}
     else
       _ ->
-      get_magiclink(nil)
+        get_magiclink(nil)
     end
   end
 
   def get_magiclink(params = [magiclink | _]) when is_list(params) do
     get_magiclink(magiclink)
   end
-  def  get_magiclink(_), do: {:error, :no_magic_link}
 
+  def get_magiclink(_), do: {:error, :no_magic_link}
 
   @doc """
   Create user or take it from webhook if it is already in db
   """
-  def get_or_create_user(%Lunchbot.Webhook{user: %Lunchbot.Repo.Users.User{} = user}), do: {:ok, user}
+  def get_or_create_user(%Lunchbot.Webhook{user: %Lunchbot.Repo.Users.User{} = user}),
+    do: {:ok, user}
+
   def get_or_create_user(%Lunchbot.Webhook{slack_data: slack_data = %{}}) do
     case Lunchbot.Repo.Users.create_user(slack_data) do
       {:ok, user} -> {:ok, user}
@@ -77,10 +78,10 @@ defmodule Lunchbot.WebhookAction.Magiclink do
 
   def update_session_for_magiclink(user), do: Lunchbot.Lunchroom.refresh_session_for_user(user)
 
-  def response_json, do:  """
-        *Magic link updated :male_mage:*
+  def response_json,
+    do: """
+      *Magic link updated :male_mage:*
 
-        Now you can send `/lunch`
-      """
-
+      Now you can send `/lunch`
+    """
 end

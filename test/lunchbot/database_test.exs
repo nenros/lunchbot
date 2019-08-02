@@ -8,4 +8,3 @@ defmodule Lunchbot.DatabaseTest do
     :ok
   end
 end
-
