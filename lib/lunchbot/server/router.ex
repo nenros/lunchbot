@@ -9,6 +9,7 @@ defmodule Lunchbot.Server.Router do
   plug(Plug.Logger)
   plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
   plug(Plug.Head)
+  plug(Lunchbot.Server.Middleware.SlackParams)
   plug(:match)
   plug(:dispatch)
 

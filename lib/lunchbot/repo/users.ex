@@ -6,7 +6,7 @@ defmodule Lunchbot.Repo.Users do
   def create_user(user_data),
     do:
       %User{}
-      |> Ecto.Changeset.cast(user_data, [:user_name, :user_id, :magiclink])
+      |> User.changeset(user_data)
       |> Lunchbot.Repo.insert()
 
   def find_user_by_user_id(user_id),

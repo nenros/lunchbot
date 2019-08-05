@@ -1,14 +1,16 @@
-defmodule Lunchbot.WebhookAction.Magiclink do
-  @moduledoc false
+defmodule Lunchbot.Command.Lunch.Magiclink do
+  alias Lunchbot.Repo.Users
+  alias Lunchbot.Repo.Users.User
 
-  def perform(webhook = %Lunchbot.Webhook{params: params}) do
-    with {:ok, magiclink} <- get_magiclink(params),
-         {:ok, user} <- get_or_create_user(webhook),
-         {:ok, user} <- Lunchbot.Repo.Users.update_magic_link(user, magiclink) do
+  require Logger
+
+  def perform(params) do
+    with {:ok, params} <- get_magiclink(params),
+         {:ok, user} <- get_or_create_user(params) do
       Task.async(fn -> update_session_for_magiclink(user) end)
-      {:ok, put_in(webhook.response.blocks, [response_json])}
+      {:ok, response_json}
     else
-      {:error, error} -> {:error, %{webhook | error: error}}
+      {:error, error} -> {:error,  error}
     end
   end
 
@@ -37,18 +39,15 @@ defmodule Lunchbot.WebhookAction.Magiclink do
     iex> Lunchbot.Webhook.Magiclink.get_magiclink(%{})
     {:error, :no_magic_link}
   """
-  def get_magiclink(params) when is_binary(params) do
-    with %{host: "airhelp.lunchroom.pl", scheme: "https", path: path} <- URI.parse(params),
+  def get_magiclink(%{"text" => <<"magiclink", rest::binary>>} = params) when byte_size(rest) > 0 do
+    with url <- String.trim(rest),
+    %{host: "airhelp.lunchroom.pl", scheme: "https", path: path} <- URI.parse(url),
          String.starts_with?(path, "/autoLogin/") do
-      {:ok, params}
+      {:ok, Map.put(params, "magiclink", url)}
     else
       _ ->
         get_magiclink(nil)
     end
-  end
-
-  def get_magiclink(params = [magiclink | _]) when is_list(params) do
-    get_magiclink(magiclink)
   end
 
   def get_magiclink(_), do: {:error, :no_magic_link}
@@ -56,23 +55,17 @@ defmodule Lunchbot.WebhookAction.Magiclink do
   @doc """
   Create user or take it from webhook if it is already in db
   """
-  def get_or_create_user(%Lunchbot.Webhook{user: %Lunchbot.Repo.Users.User{} = user}),
-    do: {:ok, user}
 
-  def get_or_create_user(%Lunchbot.Webhook{slack_data: slack_data = %{}}) do
-    case Lunchbot.Repo.Users.create_user(slack_data) do
-      {:ok, user} -> {:ok, user}
-      _ -> {:error, :user_not_created}
-    end
-  end
-
-  @doc """
-  Updates magiclink for given user
-  """
-  def update_magiclink(user, magiclink) do
-    case Lunchbot.Repo.Users.update_magic_link(user, magiclink) do
-      {:ok, user} -> {:ok, user}
-      _ -> {:error, :magic_link_not_updated}
+  def get_or_create_user(params) do
+    case Lunchbot.Repo.Users.find_user_by_user_id(params["user_id"]) do
+      user = %User{} ->
+        Logger.debug("User with id: #{user.user_id} found, updating magiclink")
+        {:ok, Users.update_magic_link(user, params["magiclink"])}
+      nil ->
+        Logger.debug("User with id: #{params["user_id"]} need to be created")
+        {:ok, user} = Users.create_user(params)
+      _ ->
+        {:error, :user_not_created}
     end
   end
 

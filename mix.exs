@@ -34,6 +34,7 @@ defmodule Lunchbot.Mixfile do
       {:floki, "~> 0.21.0"},
       {:ex_machina, "~> 2.3", only: :test},
       {:mox, "~> 0.5", only: :test},
+      {:faker, "~> 0.12", only: :test},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false}
     ]

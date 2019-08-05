@@ -1,8 +1,10 @@
-defmodule Lunchbot.WebhookAction.Help do
+defmodule Lunchbot.Command.Lunch.Help do
   def perform(webhook) do
     {:ok,
      put_in(webhook.response.blocks, [commands(), how_to_get_magic_link(), magic_link_format()])}
   end
+
+  def get_message, do: {:ok, [commands(), how_to_get_magic_link(), magic_link_format()]}
 
   def commands,
     do: """

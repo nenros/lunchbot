@@ -1,58 +1,21 @@
-defmodule Slack do
-  use HTTPoison.Base
+defmodule Lunchbot.Slack do
   require Logger
 
-  @hooks_slack_endpoint 'https://hooks.slack.com'
+  @slack_client Application.get_env(:lunchbot, :slack_client)
 
-  def process_request_url(url) do
-    %{path: path} = URI.parse(url)
-    "#{@hooks_slack_endpoint}#{path}"
-  end
-
-  def process_request_headers(headers) do
-    headers ++ [{"Content-Type", "application/json"}]
-  end
-
-  def process_request_body(body) do
-    %{
-      blocks: Enum.map(body, &build_section_block(&1))
-    }
-    |> Jason.encode!()
-  end
+  @callback send_by_response_url(String, List) :: {:ok, Map}
 
   def send_by_response_url(hook_url, data) do
-    case post(hook_url, data) do
-      {:ok, %{body: "ok", request: request}} ->
+    case @slack_client.send_by_response_url(hook_url, data) do
+      {:ok, %{body: "ok"}} ->
         Logger.info("Response sent correctly")
-
+        {:ok, :ok}
       {:ok, %{body: error, request: request}} ->
         Logger.error("Slack error: #{error}, Request: #{inspect(request)}")
-
+        {:error, :request}
       {:error, error} ->
         Logger.error("Error: #{error} when response sent")
+        {:error, :something_else}
     end
-  end
-
-  defp build_section_block(text) when is_binary(text),
-    do: %{
-      type: "section",
-      text: %{
-        type: "mrkdwn",
-        text: text
-      }
-    }
-
-  defp build_section_block({text}), do: build_section_block(text)
-
-  defp build_section_block({text, image, image_text}) do
-    Map.put(
-      build_section_block(text),
-      :accessory,
-      %{
-        type: "image",
-        image_url: image,
-        alt_text: image_text
-      }
-    )
   end
 end

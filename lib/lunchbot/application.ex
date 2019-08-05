@@ -5,9 +5,23 @@ defmodule Lunchbot.Application do
 
   def start(_type, _args) do
     children = [
-      Lunchbot.Repo,
-      Plug.Cowboy.child_spec(scheme: :http, plug: Lunchbot.Server.Router, options: [port: port()])
+      Lunchbot.Repo
     ]
+
+    children = if Mix.env() != :test do
+      children ++
+      [
+        Plug.Cowboy.child_spec(
+          scheme: :http,
+          plug: Lunchbot.Server.Router,
+          options: [
+            port: port()
+          ]
+        )
+      ]
+    else
+      children
+    end
 
     if Mix.env() == :prod do
       :ok = ScoutApm.Instruments.EctoTelemetry.attach(Lunchbot.Repo)
