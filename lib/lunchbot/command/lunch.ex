@@ -16,9 +16,9 @@ defmodule Lunchbot.Command.Lunch do
     end
   end
 
-  defp action(%{"text" => ""} = params), do: send_today_lunch(params)
-  defp action(%{"text" => <<"today", _ :: binary>>} = params), do: send_today_lunch(params)
-  defp action(%{"text" => <<"tomorrow", _ :: binary>>} = params), do: send_tomorrow_lunch(params)
+  defp action(%{"text" => ""} = params), do: send_lunch(params)
+  defp action(%{"text" => <<"today", _ :: binary>>} = params), do: send_lunch(params)
+  defp action(%{"text" => <<"tomorrow", _ :: binary>>} = params), do: send_lunch(params)
   defp action(%{"text" => <<"magiclink", _ :: binary>>} = params), do: update_magiclink(params)
   defp action(params), do: send_help(params)
 
@@ -30,8 +30,12 @@ defmodule Lunchbot.Command.Lunch do
            Lunchbot.Slack.send_by_response_url(response_url, message)
   end
 
-  def send_today_lunch(params), do: nil
-  def send_tomorrow_lunch(params), do: nil
+  def send_lunch(params) do
+    Logger.metadata(action: :lunch)
+    Logger.debug("Running lunch action")
+    Lunchbot.Command.Lunch.Lunch.run(params)
+  end
+
   def update_magiclink(params) do
     Logger.metadata(action: :magiclink)
     Logger.debug("Running magiclink action")
