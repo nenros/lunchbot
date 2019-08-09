@@ -23,15 +23,14 @@ defmodule Lunchbot.Slack.Client do
     |> Jason.encode!()
   end
 
-
   defp build_section_block(text) when is_binary(text),
-       do: %{
-         type: "section",
-         text: %{
-           type: "mrkdwn",
-           text: text
-         }
-       }
+    do: %{
+      type: "section",
+      text: %{
+        type: "mrkdwn",
+        text: text
+      }
+    }
 
   defp build_section_block({text}), do: build_section_block(text)
 

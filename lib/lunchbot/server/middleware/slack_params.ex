@@ -2,7 +2,7 @@ defmodule Lunchbot.Server.Middleware.SlackParams do
   def init(options), do: options
 
   def call(%Plug.Conn{params: %{"user_name" => user_name, "text" => text}} = conn, opts) do
-    Logger.metadata([user_name: user_name, text: text])
+    Logger.metadata(user_name: user_name, text: text)
     conn
   end
 

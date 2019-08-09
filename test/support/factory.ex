@@ -70,11 +70,15 @@ defmodule Lunchbot.Factory do
   end
 
   def help_params_factory do
-    %{ slack_params_factory() | text: "help"}
+    %{slack_params_factory() | text: "help"}
   end
 
   def magiclink_factory(_attrs) do
-    sequence(:magiclink, &"https://airhelp.lunchroom.pl/autoLogin/#{URI.encode(Faker.Internet.email)}/#{Faker.String.base64()}#{&1}")
+    sequence(
+      :magiclink,
+      &"https://airhelp.lunchroom.pl/autoLogin/#{URI.encode(Faker.Internet.email())}/#{
+        Faker.String.base64()
+      }#{&1}"
+    )
   end
-
 end

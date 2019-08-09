@@ -13,6 +13,7 @@ defmodule Lunchbot.Command.Lunch.Magiclink do
       {:error, :no_magic_link = error} ->
         Logger.info("No magic link found in params")
         {:ok, error_json(error)}
+
       {:error, error} ->
         Logger.warn("Errror found: #{error}")
         {:error, error}
@@ -29,7 +30,7 @@ defmodule Lunchbot.Command.Lunch.Magiclink do
     iex> Lunchbot.Command.Lunch.Magiclink.get_magiclink("magiclink something not link")
     {:error, :no_magic_link}
   """
-  def get_magiclink(<<"magiclink", rest :: binary>>) when byte_size(rest) > 0 do
+  def get_magiclink(<<"magiclink", rest::binary>>) when byte_size(rest) > 0 do
     with url <- String.trim(rest),
          %{host: "airhelp.lunchroom.pl", scheme: "https", path: path} <- URI.parse(url),
          String.starts_with?(path, "/autoLogin/") do
@@ -53,11 +54,14 @@ defmodule Lunchbot.Command.Lunch.Magiclink do
       user = %User{} ->
         Logger.debug("User with id: #{user.user_id} found, updating magiclink")
         Users.update_magic_link(user, magiclink)
+
       nil ->
         Logger.debug("User with id: #{params["user_id"]} need to be created")
+
         params
         |> Map.put("magiclink", magiclink)
         |> Users.create_user()
+
       _ ->
         {:error, :user_not_created}
     end
@@ -71,20 +75,19 @@ defmodule Lunchbot.Command.Lunch.Magiclink do
     end
   end
 
-
   def error_json(:no_magic_link),
-      do: """
-        *Magic link cannot be find in command parameters*
+    do: """
+      *Magic link cannot be find in command parameters*
 
-        #{Lunchbot.Command.Lunch.Help.how_to_get_magic_link()}
+      #{Lunchbot.Command.Lunch.Help.how_to_get_magic_link()}
 
-        #{Lunchbot.Command.Lunch.Help.magic_link_format()}
-      """
+      #{Lunchbot.Command.Lunch.Help.magic_link_format()}
+    """
 
   def response_json,
-      do: """
-        *Magic link updated :male_mage:*
+    do: """
+      *Magic link updated :male_mage:*
 
-        Now you can send `/lunch`
-      """
+      Now you can send `/lunch`
+    """
 end

@@ -5,11 +5,10 @@ defmodule Lunchbot.Server.Command do
   def lunch(%Plug.Conn{params: params} = conn) do
     Task.start(fn ->
       %{"user_name" => user_name, "text" => text} = params
-      Logger.metadata([user_name: user_name, text: text])
+      Logger.metadata(user_name: user_name, text: text)
       Lunchbot.Command.Lunch.run(params)
     end)
+
     send_resp(conn, 200, "")
   end
-
-
 end

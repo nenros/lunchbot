@@ -8,20 +8,21 @@ defmodule Lunchbot.Application do
       Lunchbot.Repo
     ]
 
-    children = if Mix.env() != :test do
-      children ++
-      [
-        Plug.Cowboy.child_spec(
-          scheme: :http,
-          plug: Lunchbot.Server.Router,
-          options: [
-            port: port()
+    children =
+      if Mix.env() != :test do
+        children ++
+          [
+            Plug.Cowboy.child_spec(
+              scheme: :http,
+              plug: Lunchbot.Server.Router,
+              options: [
+                port: port()
+              ]
+            )
           ]
-        )
-      ]
-    else
-      children
-    end
+      else
+        children
+      end
 
     if Mix.env() == :prod do
       :ok = ScoutApm.Instruments.EctoTelemetry.attach(Lunchbot.Repo)

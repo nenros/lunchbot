@@ -29,6 +29,7 @@ defmodule Lunchbot.Command.Lunch.Lunch do
   def read_date(text) do
     case String.trim(text) do
       "today" ->
+        nil
     end
   end
 

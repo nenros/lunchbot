@@ -10,9 +10,11 @@ defmodule Lunchbot.Slack do
       {:ok, %{body: "ok"}} ->
         Logger.info("Response sent correctly")
         {:ok, :ok}
+
       {:ok, %{body: error, request: request}} ->
         Logger.error("Slack error: #{error}, Request: #{inspect(request)}")
         {:error, :request}
+
       {:error, error} ->
         Logger.error("Error: #{error} when response sent")
         {:error, :something_else}

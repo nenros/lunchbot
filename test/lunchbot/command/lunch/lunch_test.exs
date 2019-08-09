@@ -3,12 +3,12 @@ defmodule Lunchbot.Command.Lunch.LunchTest do
 
   import Lunchbot.Factory
 
-alias Lunchbot.Command.Lunch.Lunch
+  alias Lunchbot.Command.Lunch.Lunch
+
   describe "#run/1" do
     test "return {:ok, message} if everything went fine" do
       %{user_id: user_id} = user = insert(:user)
       params = string_params_for(:slack_params, user_id: user_id)
-
 
       assert {:ok, %{}} = Lunch.run(params)
     end
@@ -18,7 +18,6 @@ alias Lunchbot.Command.Lunch.Lunch
 
       assert {:ok, %{}} = Lunch.run(params)
     end
-
   end
 
   describe "#get_user/1" do
@@ -37,16 +36,12 @@ alias Lunchbot.Command.Lunch.Lunch
 
   describe "#read_date/1" do
     test "return {:ok, today} for text 'today'" do
-
     end
 
     test "return {:ok, tomorrow} for text 'tomorrow'" do
-
     end
 
     test "return {:ok, today} for empty text" do
-
     end
   end
-
 end
