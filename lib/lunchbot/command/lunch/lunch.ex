@@ -1,5 +1,8 @@
 defmodule Lunchbot.Command.Lunch.Lunch do
   @moduledoc false
+
+  alias Lunchbot.Command.Lunch.Help
+
   def run(params) do
     with {:ok, user} <- get_user(params["user_id"]),
          {:ok, date} <- read_date(params["text"]),
@@ -58,6 +61,21 @@ defmodule Lunchbot.Command.Lunch.Lunch do
     end
   end
 
-  def get_error_message(:user_not_found), do: []
-  def get_error_message(:wrong_day), do: []
+  def get_error_message(:user_not_found),
+    do: [
+      """
+      *You have to send magic link first*
+
+      #{Help.how_to_get_magic_link()}
+      """
+    ]
+
+  def get_error_message(:wrong_day),
+    do: [
+      """
+      *Wrong day!*
+
+      Please write `today` or `tomorrow`. You can also leave empty to get today lunch
+      """
+    ]
 end
