@@ -3,8 +3,14 @@ jobs:
   build:
     docker:
       - image: circleci/elixir:1.9.1
+      - image: circleci/postgres:10-alpine
+        environment:
+          POSTGRES_DB: lunchbot_test
+          POSTGRES_USER: kuoGfGzy
+          POSTGRES_PASSWORD: y_MiBPcpiDGsR2VHB_
     environment:
       MIX_ENV: test
+      DATABASE_URL: ecto://kuoGfGzy:y_MiBPcpiDGsR2VHB_@db:5432/lunchbot_test?ssl=false&pool_size=10
     working_directory: ~/lunchbot
     steps:
       - checkout
