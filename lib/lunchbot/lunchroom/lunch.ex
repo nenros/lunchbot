@@ -1,54 +1,45 @@
 defmodule Lunchbot.Lunchroom.Lunch do
   defstruct [:company, :company_image, dishes: []]
-  use HTTPoison.Base
 
   alias Lunchbot.Lunchroom.Lunch
+  alias Lunchbot.Lunchroom.HTMLParser
 
-  @lunchroom_endpoint "https://airhelp.lunchroom.pl"
-
-  def process_request_url(url) do
-    @lunchroom_endpoint <> url
-  end
-
-  def process_response_body(body) do
-    case Lunchbot.Lunchroom.Lunch.HTMLParser.parse(body) do
+  def parse_lunch(body) do
+    case HTMLParser.parse(body) do
       {:ok, data} when data != [] ->
-        struct(
-          Lunch,
-          %{
-            company: Map.get(List.first(data), :company),
-            company_image: Map.get(List.first(data), :company_image),
-            dishes: map_dishes(data)
-          }
-        )
+        [first | _] = data
+        [map_company(first) | Enum.map(data, &map_lunch(&1))]
 
       {:ok, []} ->
-        {:error, :no_lunch_choosen}
+        [no_lunches]
 
-      {:error, _} ->
-        {:error, :no_lunch_choosen}
+      {:error, error} ->
+        {:error, error}
     end
   end
 
-  def get_lunch(session_id, day) do
-    case get(
-           "/select/day/#{day}",
-           %{},
-           hackney: [
-             cookie: session_id
-           ]
-         ) do
-      {:ok, %{body: body}} -> {:ok, body}
-    end
-  end
+  def no_lunches,
+    do: """
+    No lunches choosen
+    """
 
-  defp map_dishes(data),
-    do: for(dish <- data, into: [], do: struct(Lunchbot.Lunchroom.Lunch.Dish, dish))
+  def map_company(%{company: company, company_image: nil}),
+    do: {company_description(company)}
 
-  defimpl String.Chars do
-    def to_string(%{company: company}),
-      do: """
-      *Company*: #{company}
-      """
-  end
+  def map_company(%{company: company, company_image: image}),
+    do: {company_description(company), image, company}
+
+  def map_lunch(%{name: name, details: details, image: nil}),
+    do: {dish_description(name, details)}
+
+  def map_lunch(%{name: name, details: details, image: image}),
+    do: {dish_description(name, details), image, name}
+
+  defp company_description(company), do: "*Company:* #{company}"
+
+  defp dish_description(name, details),
+    do: """
+    *Dish*: #{name}
+    *Description*: #{details}
+    """
 end

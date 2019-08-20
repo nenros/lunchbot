@@ -1,4 +1,4 @@
-defmodule Lunchbot.Lunchroom.Lunch.HTMLParser do
+defmodule Lunchbot.Lunchroom.HTMLParser do
   @image_prefix "https://airhelp.lunchroom.pl"
 
   @text_selectors [
@@ -13,12 +13,12 @@ defmodule Lunchbot.Lunchroom.Lunch.HTMLParser do
   ]
 
   def parse(html) do
-    dishes =
+    {
+      :ok,
       html
       |> Floki.find(".one-day div.one-day-box")
       |> Enum.map(fn box -> get_dish(box) end)
-
-    {:ok, dishes}
+    }
   end
 
   defp get_dish(html) do

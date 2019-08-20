@@ -1,5 +1,5 @@
 defmodule LunchbotTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
   doctest Lunchbot
 
   setup %{} do

@@ -1,5 +1,5 @@
 defmodule Lunchbot.Factory do
-  use ExMachina
+  use ExMachina.Ecto, repo: Lunchbot.Repo
 
   @dish_name [
     "Box hummus falafel",
@@ -29,19 +29,44 @@ defmodule Lunchbot.Factory do
     }
   end
 
-  def lunch_factory do
-    %Lunchbot.Lunchroom.Lunch{
-      company: "Airhelp",
-      company_image: "https://airhelp.lunchroom.pl/public/img/company_logos/airhelp.png",
-      dishes: []
+  def slack_params_factory do
+    %{
+      channel_id: random_string(6),
+      channel_name: "test-workspace",
+      command: "/lunch",
+      response_url: "#{Faker.Internet.url()}/commands/TEST667/123456789/#{Faker.String.base64()}",
+      team_domain: "testlunchbot",
+      team_id: random_string(6),
+      text: "",
+      token: "token12456789",
+      trigger_id: "#{Faker.random_bytes(10)}.#{Faker.random_bytes(10)}.#{Faker.String.base64()}",
+      user_id: random_string(6),
+      user_name: Faker.Internet.user_name()
     }
   end
 
-  def dish_factory do
-    %Lunchbot.Lunchroom.Lunch.Dish{
-      name: sequence(:dish_name, @dish_name),
-      details: sequence(:dish_name, @dish_ingredients),
-      image: "http://image"
+  def user_factory do
+    %Lunchbot.Repo.Users.User{
+      user_name: Faker.Internet.user_name(),
+      user_id: random_string(6),
+      magiclink: magiclink_factory(%{})
     }
+  end
+
+  def help_params_factory do
+    %{slack_params_factory() | text: "help"}
+  end
+
+  def magiclink_factory(_attrs) do
+    sequence(
+      :magiclink,
+      &"https://airhelp.lunchroom.pl/autoLogin/#{URI.encode(Faker.Internet.email())}/#{
+        Faker.String.base64()
+      }#{&1}"
+    )
+  end
+
+  defp random_string(length) do
+    :crypto.strong_rand_bytes(length) |> Base.encode64() |> binary_part(0, length)
   end
 end

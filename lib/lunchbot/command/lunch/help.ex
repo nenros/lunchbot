@@ -1,8 +1,7 @@
-defmodule Lunchbot.WebhookAction.Help do
-  def perform(webhook) do
-    {:ok,
-     put_in(webhook.response.blocks, [commands(), how_to_get_magic_link(), magic_link_format()])}
-  end
+defmodule Lunchbot.Command.Lunch.Help do
+  @callback run(map) :: {:ok, list} :: {:error, :error}
+
+  def run(_params), do: {:ok, [commands(), how_to_get_magic_link(), magic_link_format()]}
 
   def commands,
     do: """

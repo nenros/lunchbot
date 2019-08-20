@@ -24,16 +24,17 @@ defmodule Lunchbot.Mixfile do
 
   defp deps do
     [
-      {:plug_cowboy, "~> 2.0"},
-      {:jason, "~> 1.1"},
+      {:plug_cowboy, "~> 2.1"},
+      {:jason, "~> 1.0"},
       {:exsync, "~> 0.2.3", only: :dev},
       {:postgrex, ">= 0.0.0"},
-      {:ecto_sql, "~> 3.1.0"},
-      {:scout_apm, "~> 0.0"},
+      {:ecto_sql, "~> 3.1.6"},
+      {:scout_apm, "~> 0.4.5"},
       {:httpoison, "~> 1.4"},
       {:floki, "~> 0.21.0"},
       {:ex_machina, "~> 2.3", only: :test},
       {:mox, "~> 0.5", only: :test},
+      {:faker, "~> 0.12", only: :test},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false}
     ]
