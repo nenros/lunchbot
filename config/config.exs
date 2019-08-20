@@ -21,7 +21,8 @@ if Mix.env() == :prod do
 
   config :scout_apm,
     name: System.get_env("SCOUT_APP_NAME"),
-    key: System.get_env("SCOUT_KEY")
+    key: System.get_env("SCOUT_KEY"),
+    ignore: ["/"]
 end
 
 if Mix.env() == :test do
