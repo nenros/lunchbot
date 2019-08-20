@@ -82,7 +82,7 @@ defmodule Lunchbot.Command.Lunch.Magiclink do
 
       #{Help.how_to_get_magic_link()}
 
-      #{Lunch.Help.magic_link_format()}
+      #{Help.magic_link_format()}
     """
 
   def response_json,
