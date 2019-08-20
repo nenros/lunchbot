@@ -1,11 +1,11 @@
-defmodule Lunchbot.Lunchroom.Lunch.HTMLParserTest do
+defmodule Lunchbot.Lunchroom.HTMLParserTest do
   use ExUnit.Case
 
-  alias Lunchbot.Lunchroom.Lunch.HTMLParser
+  alias Lunchbot.Lunchroom.HTMLParser
 
   @moduletag :capture_log
 
-  doctest Lunchbot.Lunchroom.Lunch.HTMLParser
+  doctest Lunchbot.Lunchroom.HTMLParser
 
   describe "one selected dish" do
     test "it parse file correctly" do
@@ -58,6 +58,14 @@ defmodule Lunchbot.Lunchroom.Lunch.HTMLParserTest do
                  }
                ]
              } == HTMLParser.parse(html)
+    end
+  end
+
+  describe "no selcted dishes" do
+    test "no dishes choosen" do
+      {:ok, html} = File.read("#{File.cwd!()}/test/fixtures/no_dish.txt")
+      assert {:ok, []} = HTMLParser.parse(html)
+
     end
   end
 

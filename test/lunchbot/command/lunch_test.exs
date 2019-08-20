@@ -9,57 +9,74 @@ defmodule Lunchbot.Command.LunchTest do
   doctest Lunchbot.Command.Lunch
 
   describe "help message" do
-    setup [:set_help_message]
 
-    test "it should run when text is help", %{help_message: help_message} do
+    test "it should run when text is help" do
       params = %{"response_url" => response_url} = string_params_for(:help_params)
+      {:ok, message} = Lunchbot.Command.Lunch.Help.run(params)
 
       Lunchbot.SlackMock
-      |> expect(
-        :send_by_response_url,
-        fn ^response_url, ^help_message ->
-          {:ok, %{body: "ok"}}
-        end
-      )
+      |> expect(:send_by_response_url, fn ^response_url, ^message -> {:ok, %{body: "ok"}} end)
+
 
       assert {:ok, :ok} = Lunch.run(params)
     end
 
-    test "it should run when text not known", %{help_message: help_message} do
+    test "it should run when text not known" do
       params =
         %{"response_url" => response_url} =
-        string_params_for(:help_params, text: "something not known")
+          string_params_for(:help_params, text: "something not known")
+      {:ok, message} = Lunchbot.Command.Lunch.Help.run(params)
 
       Lunchbot.SlackMock
-      |> expect(:send_by_response_url, fn ^response_url, ^help_message -> {:ok, %{body: "ok"}} end)
+      |> expect(:send_by_response_url, fn ^response_url, ^message -> {:ok, %{body: "ok"}} end)
 
       assert {:ok, :ok} = Lunch.run(params)
     end
   end
 
   describe "runs magiclink command" do
-    message = Lunchbot.Command.Lunch.Magiclink.response_json()
+    test "it should run correctly" do
+      message = [Lunchbot.Command.Lunch.Magiclink.response_json()]
 
-    params =
-      %{"response_url" => response_url} =
-      string_params_for(:slack_params, text: "magiclink #{build(:magiclink)}")
+      params =
+        %{"response_url" => response_url} =
+          string_params_for(:slack_params, text: "magiclink #{build(:magiclink)}")
 
-    Lunchbot.SlackMock
-    |> expect(:send_by_response_url, fn ^response_url, ^message -> {:ok, %{body: "ok"}} end)
+      Lunchbot.SlackMock
+      |> expect(:send_by_response_url, fn ^response_url, ^message -> {:ok, %{body: "ok"}} end)
 
-    Lunchbot.LunchroomMock
-    |> expect(
-      :get_session_from_magiclink,
-      fn _link ->
-        {:ok, "session"}
-      end
-    )
+      Lunchbot.LunchroomMock
+      |> expect(
+           :get_session_from_magiclink,
+           fn _link ->
+             {:ok, "session"}
+           end
+         )
 
-    #    assert {:ok, :ok} = Lunch.run(params)
+      assert {:ok, :ok} = Lunch.run(params)
+    end
   end
 
-  defp set_help_message(context) do
-    {:ok, help_message} = Lunchbot.Command.Lunch.Help.get_message()
-    Map.put(context, :help_message, help_message)
+  describe "runs lunch command" do
+    test "it should run correctly" do
+      session_id = "session_id"
+      user = insert(:user, session_id: session_id)
+      params =
+        %{"response_url" => response_url} =
+          string_params_for(:slack_params, text: "today", user_id: user.user_id)
+
+      Lunchbot.SlackMock
+      |> expect(:send_by_response_url, fn ^response_url, message -> {:ok, %{body: "ok"}} end)
+
+      Lunchbot.LunchroomMock
+      |> expect(
+           :get_lunch_for_date,
+           fn ^session_id, date ->
+             {:ok, %{body: "", headers: []}}
+           end
+         )
+      assert {:ok, :ok} = Lunch.run(params)
+    end
   end
+
 end

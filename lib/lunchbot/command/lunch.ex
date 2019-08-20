@@ -2,49 +2,30 @@ defmodule Lunchbot.Command.Lunch do
   @moduledoc false
   require Logger
 
-  alias Lunchbot.Command.Lunch.Magiclink
+  @callback run(map) :: {:ok, list} :: {:error, :error}
 
-  def run(params) do
+  def run(%{"text" => ""} = params), do: run_command(Lunchbot.Command.Lunch.Lunch, params, :lunch)
+  def run(%{"text" => <<"today", _ :: binary>>} = params),
+       do: run_command(Lunchbot.Command.Lunch.Lunch, params, :lunch)
+  def run(%{"text" => <<"tomorrow", _ :: binary>>} = params),
+       do: run_command(Lunchbot.Command.Lunch.Lunch, params, :lunch)
+  def run(%{"text" => <<"magiclink", _ :: binary>>} = params),
+       do: run_command(Lunchbot.Command.Lunch.Magiclink, params, :magiclink)
+  def run(params), do: run_command(Lunchbot.Command.Lunch.Help, params, :help)
+
+  def run_command(command, params, action_name) do
+    Logger.metadata(action: action_name)
+    Logger.debug("Running #{action_name} action")
     Logger.debug("Running params: #{inspect(params)}")
 
-    case action(params) do
-      {:ok, response} ->
-        Logger.info("Command run successful")
-        {:ok, response}
-
+    with {:ok, message} <- apply(command, :run, [params]),
+         %{"response_url" => response_url} <- params do
+      Logger.debug("Message to send: #{inspect(message)}")
+      Lunchbot.Slack.send_by_response_url(response_url, message)
+    else
       {:error, error} ->
-        Logger.error("Found error: #{error}")
+        Logger.error("Command returned error: #{error}")
         {:error, error}
     end
-  end
-
-  defp action(%{"text" => ""} = params), do: send_lunch(params)
-  defp action(%{"text" => <<"today", _::binary>>} = params), do: send_lunch(params)
-  defp action(%{"text" => <<"tomorrow", _::binary>>} = params), do: send_lunch(params)
-  defp action(%{"text" => <<"magiclink", _::binary>>} = params), do: update_magiclink(params)
-  defp action(params), do: send_help(params)
-
-  def send_help(params) do
-    Logger.metadata(action: :help_message)
-    Logger.debug("Running help message")
-
-    with {:ok, message} <- Lunchbot.Command.Lunch.Help.get_message(),
-         %{"response_url" => response_url} <- params,
-         do: Lunchbot.Slack.send_by_response_url(response_url, message)
-  end
-
-  def send_lunch(params) do
-    Logger.metadata(action: :lunch)
-    Logger.debug("Running lunch action")
-    Lunchbot.Command.Lunch.Lunch.run(params)
-  end
-
-  def update_magiclink(params) do
-    Logger.metadata(action: :magiclink)
-    Logger.debug("Running magiclink action")
-
-    with {:ok, message} <- Magiclink.perform(params),
-         %{"response_url" => response_url} <- params,
-         do: Lunchbot.Slack.send_by_response_url(response_url, message)
   end
 end

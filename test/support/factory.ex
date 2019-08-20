@@ -29,34 +29,18 @@ defmodule Lunchbot.Factory do
     }
   end
 
-  def lunch_factory do
-    %Lunchbot.Lunchroom.Lunch{
-      company: "Airhelp",
-      company_image: "https://airhelp.lunchroom.pl/public/img/company_logos/airhelp.png",
-      dishes: []
-    }
-  end
-
-  def dish_factory do
-    %Lunchbot.Lunchroom.Lunch.Dish{
-      name: sequence(:dish_name, @dish_name),
-      details: sequence(:dish_name, @dish_ingredients),
-      image: "http://image"
-    }
-  end
-
   def slack_params_factory do
     %{
-      channel_id: "TEST666",
+      channel_id: random_string(6),
       channel_name: "test-workspace",
       command: "/lunch",
       response_url: "#{Faker.Internet.url()}/commands/TEST667/123456789/#{Faker.String.base64()}",
       team_domain: "testlunchbot",
-      team_id: "TEST667",
+      team_id: random_string(6),
       text: "",
       token: "token12456789",
       trigger_id: "#{Faker.random_bytes(10)}.#{Faker.random_bytes(10)}.#{Faker.String.base64()}",
-      user_id: "TEST668",
+      user_id: random_string(6),
       user_name: Faker.Internet.user_name()
     }
   end
@@ -64,7 +48,7 @@ defmodule Lunchbot.Factory do
   def user_factory do
     %Lunchbot.Repo.Users.User{
       user_name: Faker.Internet.user_name(),
-      user_id: "TEST678",
+      user_id: random_string(6),
       magiclink: magiclink_factory(%{})
     }
   end
@@ -80,5 +64,9 @@ defmodule Lunchbot.Factory do
         Faker.String.base64()
       }#{&1}"
     )
+  end
+
+  defp random_string(length) do
+    :crypto.strong_rand_bytes(length) |> Base.encode64 |> binary_part(0, length)
   end
 end

@@ -1,23 +1,28 @@
 defmodule Lunchbot.Lunchroom.Session do
-  use HTTPoison.Base
 
-  def get_session_for_user(%{magiclink: magiclink}) do
-    case HTTPoison.get(magiclink) do
-      {:ok, %HTTPoison.Response{headers: headers}} ->
-        {:ok, read_session_id(headers)}
+  def read_session_id(headers) do
+    headers
+    |> Enum.reduce(
+         "",
+         &session_header_reducer(&1, &2)
+       )
+    |> check_required_data
+  end
 
-      _ ->
-        {:error, :cannot_fetch_session}
+  def check_required_data(session) do
+    with true <- String.contains?(session, "O2L"),
+         true <- String.contains?(session, "O2P")
+      do
+      {:ok, session}
+    else
+      _ -> {:error, :session_not_correct}
     end
   end
 
-  defp read_session_id(headers) do
-    headers
-    |> Enum.filter(fn {k, _} -> k == "Set-Cookie" end)
-    |> Enum.map(fn {k, v} ->
-      [value | _] = String.split(v, ";")
-      "#{value};"
-    end)
-    |> Enum.join(" ")
+  def session_header_reducer({k = "Set-Cookie", v}, acc) do
+    [value | _] = String.split(v, ";")
+    "#{acc}#{value}; "
   end
+
+  def session_header_reducer(_, acc), do: acc
 end

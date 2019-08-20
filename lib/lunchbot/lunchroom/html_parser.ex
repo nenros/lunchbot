@@ -1,4 +1,4 @@
-defmodule Lunchbot.Lunchroom.Lunch.HTMLParser do
+defmodule Lunchbot.Lunchroom.HTMLParser do
   @image_prefix "https://airhelp.lunchroom.pl"
 
   @text_selectors [
@@ -13,12 +13,12 @@ defmodule Lunchbot.Lunchroom.Lunch.HTMLParser do
   ]
 
   def parse(html) do
-    dishes =
+    {
+      :ok,
       html
       |> Floki.find(".one-day div.one-day-box")
       |> Enum.map(fn box -> get_dish(box) end)
-
-    {:ok, dishes}
+    }
   end
 
   defp get_dish(html) do
@@ -29,14 +29,14 @@ defmodule Lunchbot.Lunchroom.Lunch.HTMLParser do
   end
 
   defp get_data(html, selectors, function),
-    do:
-      Enum.reduce(
-        selectors,
-        %{},
-        fn {k, v}, acc ->
-          Map.put(acc, k, apply(__MODULE__, function, [html, v]))
-        end
-      )
+       do:
+         Enum.reduce(
+           selectors,
+           %{},
+           fn {k, v}, acc ->
+             Map.put(acc, k, apply(__MODULE__, function, [html, v]))
+           end
+         )
 
   def get_text(html, selector) when is_binary(selector) do
     case Floki.find(html, selector) do
@@ -44,7 +44,6 @@ defmodule Lunchbot.Lunchroom.Lunch.HTMLParser do
         Floki.text(html)
         |> String.replace("Ingredients:", "")
         |> String.trim()
-
       _ ->
         ""
     end

@@ -2,6 +2,7 @@ defmodule Lunchbot.Lunchroom do
   @lunchroom_client Application.get_env(:lunchbot, :lunchroom_client)
 
   @callback get_session_from_magiclink(String) :: {:ok, String}
+  @callback get_lunch_for_date(String, String) :: {:ok, list, String}
 
   def get_session_from_magiclink(magiclink) do
     with %{path: path} <- URI.parse(magiclink),
@@ -14,33 +15,15 @@ defmodule Lunchbot.Lunchroom do
   def get_lunch_for_date(session, date) do
     case @lunchroom_client.get_lunch_for_date(session, date) do
       {:ok, %{body: "User not logged in"}} -> {:error, :need_revalidate}
-      {:ok, %{body: body, headers: headers}} -> {:ok, body, read_session_id(headers)}
-      _ -> {:error, :connection_error}
+      {:ok, %{body: body}} ->
+        {:ok, parse_lunch(body)}
+      {:error, error} -> {:error, error}
     end
   end
 
-  def read_session_id(headers) do
-    headers
-    |> Enum.reduce(
-      "",
-      fn {k, v}, acc ->
-        case k == "Set-Cookie" do
-          true ->
-            [value | _] = String.split(v, ";")
-            "#{acc}#{value}; "
+  def read_session_id(headers), do:
+    Lunchbot.Lunchroom.Session.read_session_id(headers)
 
-          _ ->
-            acc
-        end
-      end
-    )
-    |> check_required_data
-  end
-
-  def check_required_data(session) do
-    with true <- String.contains?(session, "PHPSESSID"),
-         true <- String.contains?(session, "O2L"),
-         true <- String.contains?(session, "O2P"),
-         do: {:ok, session}
-  end
+  def parse_lunch(body), do:
+    Lunchbot.Lunchroom.Lunch.parse_lunch(body)
 end

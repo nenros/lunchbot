@@ -4,19 +4,19 @@ defmodule Lunchbot.Command.Lunch.Magiclink do
 
   require Logger
 
-  def perform(params) do
+  def run(params) do
     with {:ok, url} <- get_magiclink(params["text"]),
          {:ok, user} <- update_user_magiclink(params, url),
          {:ok, _user} <- update_session_for_magiclink(user) do
-      {:ok, response_json()}
+      {:ok, [response_json()]}
     else
       {:error, :no_magic_link = error} ->
         Logger.info("No magic link found in params")
-        {:ok, error_json(error)}
+        {:ok, [error_json(error)]}
 
       {:error, error} ->
         Logger.warn("Errror found: #{error}")
-        {:error, error}
+        {:error, [error]}
     end
   end
 
