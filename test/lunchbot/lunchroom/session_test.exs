@@ -6,7 +6,6 @@ defmodule Lunchbot.Lunchroom.SessionTest do
   doctest Session
 
   describe "read_session_id/1" do
-
   end
 
   describe "check_required_data/1" do
@@ -16,9 +15,16 @@ defmodule Lunchbot.Lunchroom.SessionTest do
     end
 
     test "returns {:error, } if header is missin" do
-      cookies = ["test", "O2L=bartosz.markowski%40airhelp.com;", "O2P=df32ba5195jfhdfc9e611a64bjjfhgj;", "other=test"]
+      cookies = [
+        "test",
+        "O2L=bartosz.markowski%40airhelp.com;",
+        "O2P=df32ba5195jfhdfc9e611a64bjjfhgj;",
+        "other=test"
+      ]
 
-      Enum.each(cookies, fn cookie -> assert {:error, :session_not_correct} = Session.check_required_data(cookie) end)
+      Enum.each(cookies, fn cookie ->
+        assert {:error, :session_not_correct} = Session.check_required_data(cookie)
+      end)
     end
   end
 
@@ -46,8 +52,8 @@ defmodule Lunchbot.Lunchroom.SessionTest do
         {"Transfer-Encoding", "chunked"},
         {"Content-Type", "text/html; charset=UTF-8"}
       ]
+
       Enum.each(headers, fn header -> assert "" = Session.session_header_reducer(header, "") end)
     end
-
   end
 end

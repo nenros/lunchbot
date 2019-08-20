@@ -9,15 +9,18 @@ defmodule Lunchbot.Command.Lunch.LunchTest do
   describe "#run/1" do
     test "return {:ok, message} if everything went fine" do
       session = "session"
-      today_date = Date.utc_today()
-                   |> Date.to_iso8601()
+
+      today_date =
+        Date.utc_today()
+        |> Date.to_iso8601()
+
       no_lunch_response = [Lunchbot.Lunchroom.Lunch.no_lunches()]
 
       Lunchbot.LunchroomMock
       |> expect(
-           :get_lunch_for_date,
-           fn ^session, ^today_date -> {:ok, %{body: ""}} end
-         )
+        :get_lunch_for_date,
+        fn ^session, ^today_date -> {:ok, %{body: ""}} end
+      )
 
       %{user_id: user_id} = user = insert(:user, session_id: session)
       params = string_params_for(:slack_params, user_id: user_id)

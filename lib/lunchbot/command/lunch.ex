@@ -5,12 +5,16 @@ defmodule Lunchbot.Command.Lunch do
   @callback run(map) :: {:ok, list} :: {:error, :error}
 
   def run(%{"text" => ""} = params), do: run_command(Lunchbot.Command.Lunch.Lunch, params, :lunch)
-  def run(%{"text" => <<"today", _ :: binary>>} = params),
-       do: run_command(Lunchbot.Command.Lunch.Lunch, params, :lunch)
-  def run(%{"text" => <<"tomorrow", _ :: binary>>} = params),
-       do: run_command(Lunchbot.Command.Lunch.Lunch, params, :lunch)
-  def run(%{"text" => <<"magiclink", _ :: binary>>} = params),
-       do: run_command(Lunchbot.Command.Lunch.Magiclink, params, :magiclink)
+
+  def run(%{"text" => <<"today", _::binary>>} = params),
+    do: run_command(Lunchbot.Command.Lunch.Lunch, params, :lunch)
+
+  def run(%{"text" => <<"tomorrow", _::binary>>} = params),
+    do: run_command(Lunchbot.Command.Lunch.Lunch, params, :lunch)
+
+  def run(%{"text" => <<"magiclink", _::binary>>} = params),
+    do: run_command(Lunchbot.Command.Lunch.Magiclink, params, :magiclink)
+
   def run(params), do: run_command(Lunchbot.Command.Lunch.Help, params, :help)
 
   def run_command(command, params, action_name) do

@@ -29,14 +29,14 @@ defmodule Lunchbot.Lunchroom.HTMLParser do
   end
 
   defp get_data(html, selectors, function),
-       do:
-         Enum.reduce(
-           selectors,
-           %{},
-           fn {k, v}, acc ->
-             Map.put(acc, k, apply(__MODULE__, function, [html, v]))
-           end
-         )
+    do:
+      Enum.reduce(
+        selectors,
+        %{},
+        fn {k, v}, acc ->
+          Map.put(acc, k, apply(__MODULE__, function, [html, v]))
+        end
+      )
 
   def get_text(html, selector) when is_binary(selector) do
     case Floki.find(html, selector) do
@@ -44,6 +44,7 @@ defmodule Lunchbot.Lunchroom.HTMLParser do
         Floki.text(html)
         |> String.replace("Ingredients:", "")
         |> String.trim()
+
       _ ->
         ""
     end

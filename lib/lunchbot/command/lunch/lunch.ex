@@ -23,15 +23,20 @@ defmodule Lunchbot.Command.Lunch.Lunch do
     case String.trim(text) do
       "today" ->
         {:ok, get_iso_date(:today)}
+
       "" ->
         {:ok, get_iso_date(:today)}
+
       "tomorrow" ->
         {:ok, get_iso_date(:next_working_day)}
-      _ -> {:error, :wrong_day}
+
+      _ ->
+        {:error, :wrong_day}
     end
   end
 
   def get_iso_date(day, date \\ Date.utc_today())
+
   def get_iso_date(:today, date) do
     Date.to_iso8601(date)
   end
@@ -39,7 +44,7 @@ defmodule Lunchbot.Command.Lunch.Lunch do
   def get_iso_date(:next_working_day, date) do
     date
     |> get_next_working_day
-    |> Date.to_iso8601
+    |> Date.to_iso8601()
   end
 
   def get_next_working_day(date) do
@@ -47,11 +52,12 @@ defmodule Lunchbot.Command.Lunch.Lunch do
       day when day > 4 ->
         days_to_add = 8 - day
         Date.add(date, days_to_add)
-      _ -> Date.add(date, 1)
+
+      _ ->
+        Date.add(date, 1)
     end
   end
 
   def get_error_message(:user_not_found), do: []
   def get_error_message(:wrong_day), do: []
-
 end

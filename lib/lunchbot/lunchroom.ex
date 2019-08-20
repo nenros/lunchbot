@@ -14,16 +14,18 @@ defmodule Lunchbot.Lunchroom do
 
   def get_lunch_for_date(session, date) do
     case @lunchroom_client.get_lunch_for_date(session, date) do
-      {:ok, %{body: "User not logged in"}} -> {:error, :need_revalidate}
+      {:ok, %{body: "User not logged in"}} ->
+        {:error, :need_revalidate}
+
       {:ok, %{body: body}} ->
         {:ok, parse_lunch(body)}
-      {:error, error} -> {:error, error}
+
+      {:error, error} ->
+        {:error, error}
     end
   end
 
-  def read_session_id(headers), do:
-    Lunchbot.Lunchroom.Session.read_session_id(headers)
+  def read_session_id(headers), do: Lunchbot.Lunchroom.Session.read_session_id(headers)
 
-  def parse_lunch(body), do:
-    Lunchbot.Lunchroom.Lunch.parse_lunch(body)
+  def parse_lunch(body), do: Lunchbot.Lunchroom.Lunch.parse_lunch(body)
 end

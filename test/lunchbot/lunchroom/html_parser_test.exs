@@ -65,7 +65,6 @@ defmodule Lunchbot.Lunchroom.HTMLParserTest do
     test "no dishes choosen" do
       {:ok, html} = File.read("#{File.cwd!()}/test/fixtures/no_dish.txt")
       assert {:ok, []} = HTMLParser.parse(html)
-
     end
   end
 

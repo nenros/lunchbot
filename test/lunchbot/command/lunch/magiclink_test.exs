@@ -20,16 +20,16 @@ defmodule Lunchbot.Command.Lunch.MagiclinkTest do
           text: "magiclink #{magiclink}"
         )
 
-      <<"https://airhelp.lunchroom.pl", rest :: binary>> = magiclink
+      <<"https://airhelp.lunchroom.pl", rest::binary>> = magiclink
       session_id = "expected_session_id"
 
       Lunchbot.LunchroomMock
       |> expect(
-           :get_session_from_magiclink,
-           fn ^rest ->
-             {:ok, session_id}
-           end
-         )
+        :get_session_from_magiclink,
+        fn ^rest ->
+          {:ok, session_id}
+        end
+      )
 
       response_json = [Magiclink.response_json()]
 
@@ -55,22 +55,22 @@ defmodule Lunchbot.Command.Lunch.MagiclinkTest do
           text: "magiclink #{magiclink}"
         )
 
-      <<"https://airhelp.lunchroom.pl", rest :: binary>> = magiclink
+      <<"https://airhelp.lunchroom.pl", rest::binary>> = magiclink
       session_id = "expected_session_id"
 
       Lunchbot.LunchroomMock
       |> expect(
-           :get_session_from_magiclink,
-           fn ^rest ->
-             {:ok, session_id}
-           end
-         )
+        :get_session_from_magiclink,
+        fn ^rest ->
+          {:ok, session_id}
+        end
+      )
 
       assert {:ok, ^response_json} = Magiclink.run(params)
 
       assert user =
                %User{user_id: ^user_id, user_name: ^user_name} =
-                 Users.find_user_by_user_id(params["user_id"])
+               Users.find_user_by_user_id(params["user_id"])
 
       assert user.user_id == user_id
       assert user.user_name == user_name
@@ -97,6 +97,5 @@ defmodule Lunchbot.Command.Lunch.MagiclinkTest do
           text: "magiclink #{magiclink}"
         )
     end
-
   end
 end
