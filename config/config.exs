@@ -34,6 +34,9 @@ if Mix.env() == :test do
   config :lunchbot,
     slack_client: Lunchbot.SlackMock,
     lunchroom_client: Lunchbot.LunchroomMock
+
+  config :junit_formatter,
+    report_dir: 'test-results/mix'
 end
 
 if Mix.env() == :dev do

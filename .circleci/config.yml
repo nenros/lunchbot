@@ -24,7 +24,7 @@ jobs:
 
       - run: mix format --check-formatted
       - run: mix compile
-      - run: mix credo --strict
+      - run: mix credo --strict --mute-exit-status
       - run:
           name: mix test (coveralls.circle)
           command: |

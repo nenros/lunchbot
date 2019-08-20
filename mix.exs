@@ -10,7 +10,9 @@ defmodule Lunchbot.Mixfile do
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      aliases: aliases()
+      aliases: aliases(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [coveralls: :test]
     ]
     |> Keyword.merge(custom_artifacts_directory_opts())
   end
@@ -36,7 +38,9 @@ defmodule Lunchbot.Mixfile do
       {:mox, "~> 0.5", only: :test},
       {:faker, "~> 0.12", only: :test},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false}
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false},
+      {:junit_formatter, "~> 3.0", only: [:test]},
+      {:excoveralls, "~> 0.11", only: :test}
     ]
   end
 

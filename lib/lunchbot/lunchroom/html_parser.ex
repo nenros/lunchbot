@@ -41,7 +41,8 @@ defmodule Lunchbot.Lunchroom.HTMLParser do
   def get_text(html, selector) when is_binary(selector) do
     case Floki.find(html, selector) do
       html ->
-        Floki.text(html)
+        html
+        |> Floki.text()
         |> String.replace("Ingredients:", "")
         |> String.trim()
 

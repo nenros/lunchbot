@@ -1,6 +1,7 @@
 defmodule Lunchbot.Command.Lunch.Magiclink do
   alias Lunchbot.Repo.Users
   alias Lunchbot.Repo.Users.User
+  alias Lunchbot.Command.Lunch.Help
 
   require Logger
 
@@ -50,7 +51,7 @@ defmodule Lunchbot.Command.Lunch.Magiclink do
   """
 
   def update_user_magiclink(params, magiclink) do
-    case Lunchbot.Repo.Users.find_user_by_user_id(params["user_id"]) do
+    case Users.find_user_by_user_id(params["user_id"]) do
       user = %User{} ->
         Logger.debug("User with id: #{user.user_id} found, updating magiclink")
         Users.update_magic_link(user, magiclink)
@@ -69,7 +70,7 @@ defmodule Lunchbot.Command.Lunch.Magiclink do
 
   def update_session_for_magiclink(user) do
     with {:ok, session_id} <- Lunchbot.Lunchroom.get_session_from_magiclink(user.magiclink),
-         {:ok, user} <- Lunchbot.Repo.Users.save_session_id(user, session_id) do
+         {:ok, user} <- Users.save_session_id(user, session_id) do
       Logger.debug("Updated session for user: #{user.user_id}")
       {:ok, :ok}
     end
@@ -79,9 +80,9 @@ defmodule Lunchbot.Command.Lunch.Magiclink do
     do: """
       *Magic link cannot be find in command parameters*
 
-      #{Lunchbot.Command.Lunch.Help.how_to_get_magic_link()}
+      #{Help.how_to_get_magic_link()}
 
-      #{Lunchbot.Command.Lunch.Help.magic_link_format()}
+      #{Lunch.Help.magic_link_format()}
     """
 
   def response_json,
