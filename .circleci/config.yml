@@ -10,7 +10,7 @@ jobs:
           POSTGRES_PASSWORD: y_MiBPcpiDGsR2VHB_
     environment:
       MIX_ENV: test
-      DATABASE_URL: ecto://kuoGfGzy:y_MiBPcpiDGsR2VHB_@db:5432/lunchbot_test?ssl=false&pool_size=10
+      DATABASE_URL: ecto://kuoGfGzy:y_MiBPcpiDGsR2VHB_@localhost:5432/lunchbot_test?ssl=false&pool_size=10
     working_directory: ~/lunchbot
     steps:
       - checkout
