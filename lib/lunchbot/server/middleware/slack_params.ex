@@ -6,7 +6,7 @@ defmodule Lunchbot.Server.Middleware.SlackParams do
     conn
   end
 
-  def call(conn) do
+  def call(conn, _opts) do
     Logger.metadata(user_name: :no_slack_data)
     conn
   end
