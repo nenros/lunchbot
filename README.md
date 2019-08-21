@@ -1,5 +1,7 @@
 # Lunchbot
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a2f8562833340baa9153b29aedde216)](https://app.codacy.com/app/nenros/lunchbot?utm_source=github.com&utm_medium=referral&utm_content=nenros/lunchbot&utm_campaign=Badge_Grade_Settings)
+
 - Start your service with `docker-compose up`
 - Run project test suite with `docker-compose run lunchbot mix test`
 - Start IEx session in running service
