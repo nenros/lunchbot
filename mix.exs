@@ -40,7 +40,8 @@ defmodule Lunchbot.Mixfile do
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false},
       {:junit_formatter, "~> 3.0", only: [:test]},
-      {:excoveralls, "~> 0.11", only: :test}
+      {:excoveralls, "~> 0.11", only: :test},
+      {:inch_ex, only: [:dev, :test]}
     ]
   end
 

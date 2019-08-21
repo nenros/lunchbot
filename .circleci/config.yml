@@ -31,6 +31,7 @@ jobs:
       - run: mix format --check-formatted
       - run: mix compile
       - run: mix credo --strict --mute-exit-status
+      - run: mix inch.report
       - run:
           name: mix test (coveralls.circle)
           command: |
