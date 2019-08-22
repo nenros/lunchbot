@@ -34,7 +34,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        key: v1-deps-cache-{{ checksum "mix.lock" }}
+          key: v1-deps-cache-{{ checksum "mix.lock" }}
       - run: echo "$OTP_VERSION $ELIXIR_VERSION" > .version_file
       - restore_cache:
           keys:
