@@ -62,8 +62,7 @@ jobs:
       - run: mix credo --strict --mute-exit-status
           
   test:
-    docker: 
-      - << *docker
+    docker: *docker
       - image: circleci/postgres:10-alpine
         environment:
           POSTGRES_DB: lunchbot_test
