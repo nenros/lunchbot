@@ -1,63 +1,118 @@
-version: 2.0
+version: 2.1
+
+defaults: &defaults
+  docker: 
+    - &default_docker
+      image: circleci/elixir:1.9.1
+      environment:
+        MIX_ENV: test
+        DATABASE_URL: ecto://kuoGfGzy:y_MiBPcpiDGsR2VHB_@localhost:5432/lunchbot_test?ssl=false&pool_size=10
+
 jobs:
-  build:
+  build: 
+    <<: *defaults
+    steps:
+      - checkout
+      - run: mix local.hex --force
+      - run: mix local.rebar --force
+      - restore_cache:
+          key: v1-deps-cache-{{ checksum "mix.lock" }}
+      - run: mix do deps.get, deps.compile
+      - save_cache:
+          key: v1-deps-cache-{{ checksum "mix.lock" }}
+          paths:
+            - deps
+            - ~/.mix
+            - _build
+
+      - run: mix compile
+      - run: echo "$OTP_VERSION $ELIXIR_VERSION" > .version_file
+      - restore_cache:
+          keys:
+            - plt-cache-{{ checksum ".version_file" }}-{{ checksum "mix.lock" }}
+            - plt-cache-{{ checksum ".version_file" }}
+            - plt-cache-
+      - run: mix dialyzer --plt
+      - save_cache:
+          key: plt-cache-{{ checksum ".version_file"  }}-{{ checksum "mix.lock" }}
+          paths:
+            - _build
+            - deps
+            - ~/.mix
+
+  dialyzer: 
+    <<: *defaults
+    steps:
+      - checkout
+      - run: echo "$OTP_VERSION $ELIXIR_VERSION" > .version_file
+      - restore_cache:
+          keys:
+            - plt-cache-{{ checksum ".version_file" }}-{{ checksum "mix.lock" }}
+      - run:
+          name: Execute dialyzer
+          command: mix dialyzer --plt --halt-exit-status
+
+  credo:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-deps-cache-{{ checksum "mix.lock" }}
+      - run: mix credo --strict --mute-exit-status
+          
+  test: 
+    <<: *defaults
     docker:
-      - image: circleci/elixir:1.9.1
+      - *default_docker
       - image: circleci/postgres:10-alpine
         environment:
           POSTGRES_DB: lunchbot_test
           POSTGRES_USER: kuoGfGzy
           POSTGRES_PASSWORD: y_MiBPcpiDGsR2VHB_
-    environment:
-      MIX_ENV: test
-      DATABASE_URL: ecto://kuoGfGzy:y_MiBPcpiDGsR2VHB_@localhost:5432/lunchbot_test?ssl=false&pool_size=10
-    working_directory: ~/lunchbot
+
     steps:
       - checkout
-      - run:
-          name: mix local.*
-          command: |
-            mix local.rebar --force
-            mix local.hex --force
       - restore_cache:
-          keys:
-            - lunchbot-{{ checksum "mix.lock" }}
-      - run: mix deps.get
-      - save_cache:
-          key: lunchbot-{{ checksum "mix.lock" }}
-          paths:
-            - deps/
-
-      - run: mix format --check-formatted
-      - run: mix compile
-      - run: mix credo --strict --mute-exit-status
-      - run: mix inch.report
-      - run:
-          name: mix test (coveralls.circle)
-          command: |
-            mkdir -p ./test-results/mix
-            mix coveralls.circle
-      - store_test_results:
-          path: test-results
+          key: v1-deps-cache-{{ checksum "mix.lock" }}
+      - run: mkdir -p test-results/mix/   
+      - run: mix coveralls.circle
       - store_artifacts:
+          path: cover
+          destination: coverage_results
+      - store_test_results:    
           path: test-results
-
+  generate_documentation: 
+    <<: *defaults
+    steps:
+      - checkout
       - restore_cache:
-          keys:
-            - lunchbot-plt-
-      - run:
-          name: restore plts
-          command: |
-            mkdir -p ./plt
-            touch ./plt/files
-            mv ./plt/* _build/test/
-      - run: mix dialyzer
-      - run:
-          name: save plts
-          command: |
-            cp _build/test/*.plt ./plt
-            ls ./plt/ > ./plt/files
-      - save_cache:
-          key: lunchbot-plt-{{ checksum "./plt/files" }}
-          paths:
-            - ./plt/
+          key: v1-deps-cache-{{ checksum "mix.lock" }}
+      - run: mix docs
+      - run: mix inch.report
+      - store_artifacts:
+          path: doc
+          destination: documentation
+
+  format_check: 
+     <<: *defaults
+     steps:
+      - checkout
+      - run: mix format --check-formatted
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - format_check:
+          requires:
+            - build
+      - generate_documentation:
+          requires:
+            - build
+      - dialyzer:
+          requires:
+            - build
+      - test:
+          requires:
+            - build
