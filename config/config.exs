@@ -1,7 +1,8 @@
 use Mix.Config
 
 config :lunchbot,
-  ecto_repos: [Lunchbot.Repo]
+  ecto_repos: [Lunchbot.Repo],
+  cloak_key: "T6fh1rgodZZcCFX9VOAuvmCHdrB6Cck5K6sbcPlCiGM="
 
 config :lunchbot, Lunchbot.Repo,
   # it can be overridden using the DATABASE_URL environment variable
@@ -23,6 +24,9 @@ if Mix.env() == :prod do
   config :scout_apm,
     name: System.get_env("SCOUT_APP_NAME"),
     key: System.get_env("SCOUT_KEY")
+
+  config :lunchbot,
+         cloak_key: System.get_env("CLOAK_KEY")
 end
 
 if Mix.env() == :test do

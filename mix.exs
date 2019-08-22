@@ -42,7 +42,8 @@ defmodule Lunchbot.Mixfile do
       {:junit_formatter, "~> 3.0", only: [:test]},
       {:excoveralls, "~> 0.11", only: :test},
       {:inch_ex, only: [:dev, :test]},
-      {:ex_doc, "~> 0.21", only: [:dev, :test], runtime: false}
+      {:ex_doc, "~> 0.21", only: [:dev, :test], runtime: false},
+      {:cloak_ecto, "~> 1.0.1"}
     ]
   end
 
