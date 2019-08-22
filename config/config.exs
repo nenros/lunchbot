@@ -26,7 +26,7 @@ if Mix.env() == :prod do
     key: System.get_env("SCOUT_KEY")
 
   config :lunchbot,
-         cloak_key: System.get_env("CLOAK_KEY")
+    cloak_key: System.get_env("CLOAK_KEY")
 end
 
 if Mix.env() == :test do
