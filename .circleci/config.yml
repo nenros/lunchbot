@@ -72,12 +72,13 @@ jobs:
       - checkout
       - restore_cache:
           key: v1-deps-cache-{{ checksum "mix.lock" }}
+      - run: mkdir -p test-results/mix/   
       - run: mix coveralls.html
-
       - store_artifacts:
           path: cover
           destination: coverage_results
-
+      - store_artifacts:    
+          path: test-results/mix 
   generate_documentation: 
     <<: *defaults
     steps:
