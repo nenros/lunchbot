@@ -1,8 +1,8 @@
 {
   "skip_files": [
     "test",
-    "/lib/lunchbot/application.ex",
-    "/lib/lunchbot/repo.ex"
+    "lib/lunchbot/application.ex",
+    "lib/lunchbot/repo.ex"
   ],
   "minimum_coverage": 80
 }
