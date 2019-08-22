@@ -24,6 +24,6 @@ defmodule Lunchbot.Repo.Users do
   def save_session_id(user, session_id),
     do:
       user
-      |> Ecto.Changeset.change(session_id: session_id)
+      |> User.changeset(%{session_id: session_id})
       |> Lunchbot.Repo.update()
 end
