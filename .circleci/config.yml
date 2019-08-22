@@ -13,7 +13,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-
       - run: mix local.hex --force
       - run: mix local.rebar --force
       - restore_cache:
@@ -78,7 +77,7 @@ jobs:
       - restore_cache:
           key: v1-deps-cache-{{ checksum "mix.lock" }}
       - run: mkdir -p test-results/mix/   
-      - run: mix coveralls.html
+      - run: mix coveralls.circle
       - store_artifacts:
           path: cover
           destination: coverage_results
