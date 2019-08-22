@@ -22,7 +22,7 @@ defmodule Lunchbot.Command.Lunch do
 
   def run_command(command, params, action_name) do
     transaction(:background, "Lunch.#{action_name}") do
-      ScoutApm.Context.add_user(:slack_id, params["user_id"])
+      ScoutApm.Context.add_user(:slack_id, params["user_name"])
       Logger.metadata(action: action_name)
       Logger.info("Running #{action_name} action")
       Logger.debug("Running params: #{inspect(params)}")
