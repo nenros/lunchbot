@@ -8,7 +8,8 @@ defaults: &defaults
         DATABASE_URL: ecto://kuoGfGzy:y_MiBPcpiDGsR2VHB_@localhost:5432/lunchbot_test?ssl=false&pool_size=10
 
 jobs:
-  build: *defaults
+  build: 
+    <<: *defaults
     steps:
       - checkout
 
@@ -39,7 +40,8 @@ jobs:
             - deps
             - ~/.mix
 
-  dialyzer: *defaults
+  dialyzer: 
+    <<: *defaults
     steps:
       - checkout
       - run: echo "$OTP_VERSION $ELIXIR_VERSION" > .version_file
@@ -50,7 +52,8 @@ jobs:
           name: Execute dialyzer
           command: mix dialyzer --halt-exit-status
 
-  credo: *defaults
+  credo:
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -76,7 +79,8 @@ jobs:
           path: cover
           destination: coverage_results
 
-  generate_documentation: *defaults
+  generate_documentation: 
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
@@ -88,7 +92,8 @@ jobs:
           path: doc
           destination: documentation
 
-  format_check: *defaults
+  format_check: 
+    <<: *defaults
      steps:
       - checkout
 
