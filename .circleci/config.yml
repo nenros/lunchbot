@@ -93,7 +93,7 @@ jobs:
           destination: documentation
 
   format_check: 
-    <<: *defaults
+     <<: *defaults
      steps:
       - checkout
 
