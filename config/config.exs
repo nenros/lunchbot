@@ -17,7 +17,8 @@ config :lunchbot,
 
 if Mix.env() == :prod do
   config :logger,
-    level: :info
+    level: :info,
+    format: "\n[$level] $metadata $levelpad$message\n"
 
   config :scout_apm,
     name: System.get_env("SCOUT_APP_NAME"),
