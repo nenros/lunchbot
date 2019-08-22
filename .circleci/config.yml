@@ -1,7 +1,7 @@
 version: 2.1
 
 defaults: &defaults
-  docker: 
+  docker:
     - &default_docker
       image: circleci/elixir:1.9.1
       environment:
@@ -9,7 +9,7 @@ defaults: &defaults
         DATABASE_URL: ecto://kuoGfGzy:y_MiBPcpiDGsR2VHB_@localhost:5432/lunchbot_test?ssl=false&pool_size=10
 
 jobs:
-  build: 
+  build:
     <<: *defaults
     steps:
       - checkout
@@ -40,7 +40,7 @@ jobs:
             - deps
             - ~/.mix
 
-  dialyzer: 
+  dialyzer:
     <<: *defaults
     steps:
       - checkout
@@ -50,7 +50,7 @@ jobs:
             - plt-cache-{{ checksum ".version_file" }}-{{ checksum "mix.lock" }}
       - run:
           name: Execute dialyzer
-          command: mix dialyzer --plt --halt-exit-status
+          command: mix dialyzer --halt-exit-status
 
   credo:
     <<: *defaults
@@ -59,8 +59,8 @@ jobs:
       - restore_cache:
           key: v1-deps-cache-{{ checksum "mix.lock" }}
       - run: mix credo --strict --mute-exit-status
-          
-  test: 
+
+  test:
     <<: *defaults
     docker:
       - *default_docker
@@ -69,19 +69,19 @@ jobs:
           POSTGRES_DB: lunchbot_test
           POSTGRES_USER: kuoGfGzy
           POSTGRES_PASSWORD: y_MiBPcpiDGsR2VHB_
-
     steps:
       - checkout
       - restore_cache:
           key: v1-deps-cache-{{ checksum "mix.lock" }}
-      - run: mkdir -p test-results/mix/   
+      - run: mkdir -p test-results/mix/
       - run: mix coveralls.circle
       - store_artifacts:
           path: cover
           destination: coverage_results
-      - store_test_results:    
+      - store_test_results:
           path: test-results
-  generate_documentation: 
+
+  generate_documentation:
     <<: *defaults
     steps:
       - checkout
@@ -92,10 +92,9 @@ jobs:
       - store_artifacts:
           path: doc
           destination: documentation
-
-  format_check: 
-     <<: *defaults
-     steps:
+  format_check:
+    <<: *defaults
+    steps:
       - checkout
       - run: mix format --check-formatted
 

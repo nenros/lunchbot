@@ -5,7 +5,8 @@ defmodule Lunchbot.Application do
 
   def start(_type, _args) do
     children = [
-      Lunchbot.Repo
+      Lunchbot.Repo,
+      Lunchbot.Repo.Vault
     ]
 
     children =
