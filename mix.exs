@@ -30,7 +30,7 @@ defmodule Lunchbot.Mixfile do
       {:jason, "~> 1.0"},
       {:exsync, "~> 0.2.3", only: :dev},
       {:postgrex, ">= 0.0.0"},
-      {:ecto_sql, "~> 3.1.6"},
+      {:ecto_sql, "~> 3.2.0"},
       {:scout_apm, "~> 0.4.5"},
       {:httpoison, "~> 1.4"},
       {:floki, "~> 0.23.0"},
