@@ -18,12 +18,13 @@ config :lunchbot,
 
 if Mix.env() == :prod do
   config :logger,
-    level: :debug,
+    level: :info,
     format: "[$level] $metadata $levelpad$message"
 
   config :scout_apm,
     name: System.get_env("SCOUT_APP_NAME"),
-    key: System.get_env("SCOUT_KEY")
+    key: System.get_env("SCOUT_KEY"),
+    log_level: System.get_env("SCOUT_LOG_LEVEL")
 
   config :lunchbot,
     cloak_key: System.get_env("CLOAK_KEY")

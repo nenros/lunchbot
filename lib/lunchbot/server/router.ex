@@ -6,12 +6,12 @@ defmodule Lunchbot.Server.Router do
     use Plug.Debugger, otp_app: :lunchbot
   end
 
-  plug(Plug.Logger)
-  plug(Plug.Parsers, parsers: [:urlencoded, :multipart])
-  plug(Plug.Head)
-  plug(Lunchbot.Server.Middleware.SlackParams)
-  plug(:match)
-  plug(:dispatch)
+  plug Plug.Logger
+  plug Plug.Parsers, parsers: [:urlencoded, :multipart]
+  plug Plug.Head
+  plug Lunchbot.Server.Middleware.SlackParams
+  plug :match
+  plug :dispatch
 
   alias Lunchbot.Server.Command
 
