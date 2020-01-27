@@ -33,7 +33,7 @@ defmodule Lunchbot.Mixfile do
       {:ecto_sql, "~> 3.2.0"},
       {:scout_apm, "~> 1.0.0"},
       {:httpoison, "~> 1.4"},
-      {:floki, "~> 0.23.0"},
+      {:floki, "~> 0.25.0"},
       {:ex_machina, "~> 2.3", only: :test},
       {:mox, "~> 0.5", only: :test},
       {:faker, "~> 0.12", only: :test},
