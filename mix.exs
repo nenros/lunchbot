@@ -37,7 +37,7 @@ defmodule Lunchbot.Mixfile do
       {:ex_machina, "~> 2.3", only: :test},
       {:mox, "~> 0.5", only: :test},
       {:faker, "~> 0.12", only: :test},
-      {:credo, "~> 1.1.3", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.3.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
       {:junit_formatter, "~> 3.0", only: [:test]},
       {:excoveralls, "~> 0.11", only: :test},
